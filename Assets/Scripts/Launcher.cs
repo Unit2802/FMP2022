@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using TMPro;
 using Photon.Realtime;
+using System.Linq;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
@@ -13,7 +14,10 @@ public class Launcher : MonoBehaviourPunCallbacks
     [SerializeField] TMP_Text errorText;
     [SerializeField] TMP_Text roomNameText;
     [SerializeField] Transform roomListContent;
+    [SerializeField] Transform PlayerListContent;
     [SerializeField] GameObject roomListItemPrefrab;
+    [SerializeField] GameObject playerListItemPrefrab;
+    [SerializeField] GameObject startGameButton;
 
     private void Awake()
     {
@@ -26,18 +30,24 @@ public class Launcher : MonoBehaviourPunCallbacks
         PhotonNetwork.ConnectUsingSettings();
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 
     public override void OnConnectedToMaster()
     {
         Debug.Log("Connected to Master");
 
         PhotonNetwork.JoinLobby();
+        PhotonNetwork.AutomaticallySyncScene = true;
     }
 
     public override void OnJoinedLobby()
     {
         MenuManager.Instance.OpenMenu("Title");
         Debug.Log("Joined Lobby");
+        PhotonNetwork.NickName = "Player " + Random.Range(0, 1000).ToString("0000");
     }
     public void CreateRoom()
     {
@@ -55,6 +65,21 @@ public class Launcher : MonoBehaviourPunCallbacks
     {
         MenuManager.Instance.OpenMenu("Room");
         roomNameText.text = PhotonNetwork.CurrentRoom.Name;
+
+        Player[] players = PhotonNetwork.PlayerList;
+
+        for (int i = 0; i < players.Count(); i++)
+        {
+            Instantiate(playerListItemPrefrab, PlayerListContent).GetComponent<PlayerListItem>().SetUp(players[i]);
+
+        }
+
+        startGameButton.SetActive(PhotonNetwork.IsMasterClient);
+    }
+
+    public override void OnMasterClientSwitched(Player newMasterClient)
+    {
+        startGameButton.SetActive(PhotonNetwork.IsMasterClient);
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)
@@ -62,6 +87,11 @@ public class Launcher : MonoBehaviourPunCallbacks
         errorText.text = "Failed to create room: " + message;
         MenuManager.Instance.OpenMenu("Error");
 
+    }
+
+    public void StartGame()
+    {
+        PhotonNetwork.LoadLevel(1);
     }
 
     public void LeaveRoom()
@@ -74,6 +104,8 @@ public class Launcher : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.JoinRoom(info.Name);
         MenuManager.Instance.OpenMenu("Loading");
+
+        
     }
 
     public override void OnLeftRoom()
@@ -91,5 +123,10 @@ public class Launcher : MonoBehaviourPunCallbacks
         {
             Instantiate(roomListItemPrefrab, roomListContent).GetComponent<RoomListItem>().SetUp(roomList[i]);
         }
+    }
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        Instantiate(playerListItemPrefrab, PlayerListContent).GetComponent<PlayerListItem>().SetUp(newPlayer);
     }
 }
