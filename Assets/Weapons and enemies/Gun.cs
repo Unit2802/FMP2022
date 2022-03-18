@@ -13,28 +13,39 @@ public class Gun : MonoBehaviour
 
     public bool isTeamOne = true;
 
+    private AudioSource mAudioSrc;
+
     public float fireRate = 1f;
     private float nextFire = 0f;
 
     public static bool isWeaponTwo = false;
+
+    void Start()
+    {
+        mAudioSrc = GetComponent<AudioSource>();
+    }
+
+
 
     void Update()
     { 
     
             if(isWeaponTwo == true)
 
-     {  //activate shots
-        if(Input.GetButtonDown("Fire1") && ammo > 0 && Time.time > nextFire)
-        {
-            Shoot();
-            ammo -= 1;
-        }
+            {  //activate shots
+                    if(Input.GetButtonDown("Fire1") && ammo > 0 && Time.time > nextFire)
+                    {
 
-        if(Input.GetButtonDown("Reload") && ammo != maxAmmo )
-        {
-            Reload();
-        }
-     }
+                          mAudioSrc.Play();    
+                          Shoot();
+                          ammo -= 1;
+                    }
+
+                    if(Input.GetButtonDown("Reload") && ammo != maxAmmo )
+                    {
+                         Reload();
+                    }
+            }
 
      else
 
