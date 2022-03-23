@@ -2,19 +2,23 @@ using UnityEngine;
 
 public class AutoGun : MonoBehaviour
 {
-   
+    [Header("======Weapon Stats======")]
     public float damage = 25f;
     public float range = 100f;
 
-    public float ammo = 10f;
+    [Range(0f, 50f)]public float ammo = 50f;
     public float maxAmmo = 10f;
-
-    public Camera fpsCam;
-
-    public bool isTeamOne = true;
 
     public float fireRate = 1f;
     private float nextFire = 0f;
+
+    [Space(30)]
+    public Camera fpsCam;
+
+    [Tooltip("If the box is checked, the TeamOneEnemy script needs to be on the enemies. Otherwise, use TeamTwoEnemy.")]
+    public bool isTeamOne = true;
+
+
 
     public static bool isWeaponOne = true;
 

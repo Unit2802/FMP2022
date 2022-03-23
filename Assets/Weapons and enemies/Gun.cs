@@ -2,21 +2,24 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-   
+    [Header("======Weapon Stats======")]
     public float damage = 25f;
     public float range = 100f;
 
-    public float ammo = 10f;
+    [Range(0f, 10f)]public float ammo = 10f;
     public float maxAmmo = 10f;
+    public float fireRate = 1f;
+    private float nextFire = 0f;
 
+    [Space(30)]
     public Camera fpsCam;
 
+    [Tooltip("If the box is checked, the TeamOneEnemy script needs to be on the enemies. Otherwise, use TeamTwoEnemy.")]
     public bool isTeamOne = true;
 
     private AudioSource mAudioSrc;
 
-    public float fireRate = 1f;
-    private float nextFire = 0f;
+
 
     public static bool isWeaponTwo = false;
 
@@ -36,7 +39,7 @@ public class Gun : MonoBehaviour
                     if(Input.GetButtonDown("Fire1") && ammo > 0 && Time.time > nextFire)
                     {
 
-                          mAudioSrc.Play();    
+                         // mAudioSrc.Play();    
                           Shoot();
                           ammo -= 1;
                     }
