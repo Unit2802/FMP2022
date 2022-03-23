@@ -6,7 +6,14 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] GameObject cameraHolder;
 
-    [SerializeField] float mouseSens, sprintSpeed, walkSpeed, jumpForce, smoothTime;
+    [Header("Player Settings")]
+
+
+    [Range(0, 100)] [SerializeField] float mouseSens;
+    [Range(0, 100)] [SerializeField] float walkSpeed;
+    [Range(0, 100)] [SerializeField] float jumpForce;
+    [Range(0, 100)] [SerializeField] float smoothTime;
+    [Range(0, 100)][SerializeField] float sprintSpeed;
 
     float verticalLookRotation;
     bool grounded;

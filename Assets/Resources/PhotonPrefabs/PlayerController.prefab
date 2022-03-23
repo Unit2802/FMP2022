@@ -243,10 +243,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraHolder: {fileID: 0}
   mouseSens: 3
-  sprintSpeed: 0
   walkSpeed: 0
   jumpForce: 0
   smoothTime: 0
+  sprintSpeed: 0
 --- !u!54 &9141039692403510160
 Rigidbody:
   m_ObjectHideFlags: 0
