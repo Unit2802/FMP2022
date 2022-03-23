@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 // Contains the command the user wishes upon the character
 struct Cmd
@@ -63,6 +64,12 @@ public class CPMPlayer : MonoBehaviour
     // Player commands, stores wish commands that the player asks for (Forward, back, jump, etc)
     private Cmd _cmd;
 
+    PhotonView PV;
+
+    private void Awake()
+    {
+        PV = GetComponent<PhotonView>();
+    }
     private void Start()
     {
         // Hide the cursor
@@ -76,6 +83,11 @@ public class CPMPlayer : MonoBehaviour
                 playerView = mainCamera.gameObject.transform;
         }
 
+        if (!PV.IsMine)
+        {
+            Destroy(GetComponentInChildren<Camera>().gameObject);
+        }
+
         // Put the camera inside the capsule collider
         playerView.position = new Vector3(
             transform.position.x,
@@ -87,6 +99,10 @@ public class CPMPlayer : MonoBehaviour
 
     private void Update()
     {
+
+        if (!PV.IsMine)
+            return;
+
         // Do FPS calculation
         frameCount++;
         dt += Time.deltaTime;
@@ -144,7 +160,7 @@ public class CPMPlayer : MonoBehaviour
 
     /*******************************************************************************************************\
    |* MOVEMENT
-   \*******************************************************************************************************/
+    \*******************************************************************************************************/
 
     /**
      * Sets the movement direction based on player input
@@ -342,7 +358,7 @@ public class CPMPlayer : MonoBehaviour
         playerVelocity.z += accelspeed * wishdir.z;
     }
 
-    private void OnGUI()
+    /*private void OnGUI()
     {
         GUI.Label(new Rect(0, 0, 400, 100), "FPS: " + fps, style);
         var ups = _controller.velocity;
@@ -350,4 +366,5 @@ public class CPMPlayer : MonoBehaviour
         GUI.Label(new Rect(0, 15, 400, 100), "Speed: " + Mathf.Round(ups.magnitude * 100) / 100 + "ups", style);
         GUI.Label(new Rect(0, 30, 400, 100), "Top Speed: " + Mathf.Round(playerTopVelocity * 100) / 100 + "ups", style);
     }
+    */
 }

@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,11 +10,11 @@ public class PlayerController : MonoBehaviour
     [Header("Player Settings")]
 
 
-    [Range(0, 100)] [SerializeField] float mouseSens;
-    [Range(0, 100)] [SerializeField] float walkSpeed;
-    [Range(0, 100)] [SerializeField] float jumpForce;
-    [Range(0, 100)] [SerializeField] float smoothTime;
-    [Range(0, 100)][SerializeField] float sprintSpeed;
+    [SerializeField] float mouseSens;
+    [SerializeField] float walkSpeed;
+    [Range(0, 1000)] [SerializeField] float jumpForce;
+    [SerializeField] float smoothTime;
+    [SerializeField] float sprintSpeed;
 
     float verticalLookRotation;
     bool grounded;
@@ -23,13 +24,27 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody rb;
 
+    PhotonView PV;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        PV = GetComponent<PhotonView>();
+    }
+
+    private void Start()
+    {
+        if(!PV.IsMine)
+        {
+            Destroy(GetComponentInChildren<Camera>().gameObject);
+        }
     }
 
     private void Update()
     {
+        if (!PV.IsMine)
+            return;
+
         Look();
         Move();
         Jump();
@@ -54,7 +69,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
 
-        moveAmount = Vector3.SmoothDamp(moveAmount, moveDir * (Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : walkSpeed), ref smoothMoveVelocity, smoothTime);
+        moveAmount = Vector3.SmoothDamp(moveAmount, moveDir * (Input.GetKey(KeyCode.LeftShift) ? walkSpeed : sprintSpeed), ref smoothMoveVelocity, smoothTime);
     }
 
     public void SetGroundedState(bool _grounded)
