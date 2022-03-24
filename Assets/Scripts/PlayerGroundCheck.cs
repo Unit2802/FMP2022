@@ -1,11 +1,10 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*public class PlayerGroundCheck : MonoBehaviour
+public class PlayerGroundCheck : MonoBehaviour
 {
-    CPMPlayer playerController;
+    PlayerController playerController;
 
     private void Awake()
     {
@@ -64,4 +63,3 @@ using UnityEngine;
     }
 
 }
-*/
