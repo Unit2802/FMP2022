@@ -7,10 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class RoomManager : MonoBehaviourPunCallbacks
 {
-    public float xSense = 30f;
-    public float ySense = 30f;
-
-
 
     public static RoomManager Instance;
 
