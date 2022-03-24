@@ -120,8 +120,8 @@ public class CPMPlayer : MonoBehaviour
         }
 
         /* Camera rotation stuff, mouse controls this shit */
-        rotX -= Input.GetAxisRaw("Mouse Y") * xMouseSensitivity * 0.02f;
-        rotY += Input.GetAxisRaw("Mouse X") * yMouseSensitivity * 0.02f;
+        rotX -= Input.GetAxisRaw("Mouse Y") * RoomManager.Instance.xSense * 0.02f;
+        rotY += Input.GetAxisRaw("Mouse X") * RoomManager.Instance.ySense * 0.02f;
 
         // Clamp the X rotation
         if (rotX < -90)
@@ -357,6 +357,8 @@ public class CPMPlayer : MonoBehaviour
         playerVelocity.x += accelspeed * wishdir.x;
         playerVelocity.z += accelspeed * wishdir.z;
     }
+
+
 
     /*private void OnGUI()
     {
