@@ -988,6 +988,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a7d524c95a097443b92725878007afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FOVs:
+  - 100
+  - 60
+  - 15
   aimPos: {x: 3.748, y: 1.09, z: -9.02}
   adsSpeed: 8
 --- !u!1 &1235927884

@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class AimDownSights : MonoBehaviour
 {
+    [Header("Changing the FOV")]
+    public float[] FOVs = { 100, 60, 15 };
+    Camera myCam;
 
+    [Header("Moving the gun when aiming")]
     private Vector3 originalPos;
     [SerializeField] Vector3 aimPos;
     [SerializeField] float adsSpeed = 8;
