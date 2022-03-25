@@ -15,8 +15,8 @@ public class CPMPlayer : MonoBehaviour
 {
     public Transform playerView;     // Camera
     public float playerViewYOffset = 0.6f; // The height at which the camera is bound to
-    public float xMouseSensitivity = 30.0f;
-    public float yMouseSensitivity = 30.0f;
+   /* public float xSense = 30.0f;
+    public float ySense = 30.0f; */
     //
     /*Frame occuring factors*/
     public float gravity = 20.0f;
@@ -120,8 +120,8 @@ public class CPMPlayer : MonoBehaviour
         }
 
         /* Camera rotation stuff, mouse controls this shit */
-        rotX -= Input.GetAxisRaw("Mouse Y") * xMouseSensitivity * 0.02f;
-        rotY += Input.GetAxisRaw("Mouse X") * yMouseSensitivity * 0.02f;
+        rotX -= Input.GetAxisRaw("Mouse Y") * RoomManager.Instance.ySense * 0.02f;
+        rotY += Input.GetAxisRaw("Mouse X") * RoomManager.Instance.xSense * 0.02f;
 
         // Clamp the X rotation
         if (rotX < -90)

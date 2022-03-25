@@ -261,8 +261,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerView: {fileID: 5690105837863867710}
   playerViewYOffset: 0.6
-  xMouseSensitivity: 50
-  yMouseSensitivity: 50
   gravity: 20
   friction: 6
   moveSpeed: 7
