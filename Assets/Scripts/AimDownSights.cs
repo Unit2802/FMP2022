@@ -8,6 +8,8 @@ public class AimDownSights : MonoBehaviour
     private Vector3 originalPos;
     [SerializeField] Vector3 aimPos;
     [SerializeField] float adsSpeed = 8;
+
+
     // Start is called before the first frame update
     void Start()
     {
