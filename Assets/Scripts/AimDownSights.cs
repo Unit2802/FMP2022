@@ -5,10 +5,14 @@ using UnityEngine;
 public class AimDownSights : MonoBehaviour
 {
     [Header("Changing the FOV")]
-    public float[] FOVs = { 100, 60, 15 };
-    Camera myCam;
+    public Camera myCam;
+    public int ZoomInFOV = 30;
+    public int ZoomOutFOV = 60;
 
-    [Header("Moving the gun when aiming")]
+
+
+    [Header("Moving the gun when aiming in")]
+
     private Vector3 originalPos;
     [SerializeField] Vector3 aimPos;
     [SerializeField] float adsSpeed = 8;
@@ -24,6 +28,25 @@ public class AimDownSights : MonoBehaviour
     void Update()
     {
         ADS();
+        if(Input.GetButton("Fire2"))
+        {
+            ZoomIn();
+        }
+
+        if (Input.GetButton("Fire2"))
+        {
+            ZoomOut();
+        }
+    }
+
+    void ZoomIn()
+    {
+        myCam.fieldOfView = ZoomInFOV;
+    }
+
+    void ZoomOut()
+    {
+        myCam.fieldOfView = ZoomOutFOV;
     }
 
     private void ADS()
