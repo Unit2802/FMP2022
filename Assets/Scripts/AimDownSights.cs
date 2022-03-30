@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class AimDownSights : MonoBehaviour
 {
+    
+
     [Header("Changing the FOV")]
     public Camera myCam;
     public int ZoomInFOV = 30;
     public int ZoomOutFOV = 60;
 
-
+    
 
     [Header("Moving the gun when aiming in")]
 
@@ -31,12 +33,12 @@ public class AimDownSights : MonoBehaviour
         if(Input.GetButton("Fire2"))
         {
             ZoomIn();
-        }
-
-        if (Input.GetButton("Fire2"))
+        } else
         {
             ZoomOut();
         }
+
+      
     }
 
     void ZoomIn()
