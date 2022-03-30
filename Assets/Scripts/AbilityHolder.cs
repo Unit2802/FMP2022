@@ -25,7 +25,7 @@ public class AbilityHolder : MonoBehaviour
             case AbilityState.ready:
                 if (Input.GetKey(key))
                 {
-                    ab.Activate();
+                    ab.Activate(gameObject);
                     state = AbilityState.active;
                     activeTime = ab.activeTime;
                 }
