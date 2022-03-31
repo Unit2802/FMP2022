@@ -20,9 +20,13 @@ public class Gun : MonoBehaviour
 
     public static bool isWeaponTwo = false;
 
+    private UIManager uiManager;
+
     void Start()
     {
         mAudioSrc = GetComponent<AudioSource>();
+
+        uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
     }
 
 
@@ -38,7 +42,7 @@ public class Gun : MonoBehaviour
 
                           mAudioSrc.Play();    
                           Shoot();
-                          ammo -= 1;
+                          ammo -= 1f;
                     }
 
                     if(Input.GetButtonDown("Reload") && ammo != maxAmmo )
@@ -62,8 +66,9 @@ public class Gun : MonoBehaviour
     {
             //when clicking on something - shoot weapon
             nextFire = Time.time + fireRate;
-
-            RaycastHit hit;
+            ammo--;
+            uiManager.UpdateAmmo(ammo);
+        RaycastHit hit;
            if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
            {
                Debug.Log(hit.transform.name);
@@ -94,5 +99,6 @@ public class Gun : MonoBehaviour
     void Reload()
     {
         ammo = maxAmmo;
+        uiManager.UpdateAmmo(ammo);
     }
 }
