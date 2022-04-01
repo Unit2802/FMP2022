@@ -5,11 +5,13 @@ using UnityEngine;
 [CreateAssetMenu]
 public class GrenadeAbility : Ability
 {
-   
+  
 
 
     public override void Activate(GameObject parent)
     {
 
     }
+
+
 }
