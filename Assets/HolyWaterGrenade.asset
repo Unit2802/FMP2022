@@ -15,3 +15,7 @@ MonoBehaviour:
   name: Holy Water Grenade
   cooldownTime: 5
   activeTime: 1
+  delay: 3
+  grenade: {fileID: 919132149155446097, guid: 9b11d660b4426c94fbd78097e7bee42b, type: 3}
+  explosionEffect: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664,
+    type: 3}
