@@ -6,6 +6,8 @@ using UnityEngine;
 public class GrenadeAbility : Ability
 {
     public float delay = 3f;
+    public float radius = 5f;
+    public float force = 700f;
 
     public GameObject grenade;
 
@@ -29,7 +31,16 @@ public class GrenadeAbility : Ability
     {
         Instantiate(explosionEffect, grenade.transform.position, grenade.transform.rotation );
 
-        //Get nearby objects
+        Collider[] colliders = Physics.OverlapSphere(grenade.transform.position, radius);
+
+        foreach (Collider nearbyObject in colliders)
+        {
+            Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.AddExplosionForce(force, grenade.transform.position, radius);
+            }
+        }
         //Add force
         //Damage effect
 
