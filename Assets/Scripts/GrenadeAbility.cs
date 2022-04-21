@@ -1,63 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 [CreateAssetMenu]
 public class GrenadeAbility : Ability
 {
-    public float delay = 3f;
-    public float radius = 5f;
-    public float force = 700f;
+    
+    [Header("References")]
+    public Transform cam;
+    public Transform attackPoint;
+    public GameObject objectToThrow;
+    
 
-    public GameObject grenade;
+    [Header("Settings")]
+    public int totalThrows;
+    public float throwCooldown;
 
-    public GameObject explosionEffect;
+    [Header("Throwing")]
+    AbilityHolder ab;
+    public float throwForce;
+    public float throwUpwardForce;
 
-    float countdown;
-    bool hasExploded = false;
+    bool readyToThrow;
 
     void Start()
     {
-        countdown = delay;
+       
+
+     
     }
 
     void Update()
     {
-        countdown -= Time.deltaTime;
+      
         
     }
 
-    void Explode()
-    {
-        Instantiate(explosionEffect, grenade.transform.position, grenade.transform.rotation );
-
-        Collider[] colliders = Physics.OverlapSphere(grenade.transform.position, radius);
-
-        foreach (Collider nearbyObject in colliders)
-        {
-            Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                rb.AddExplosionForce(force, grenade.transform.position, radius);
-            }
-            Destructible dest = nearbyObject.GetComponent<Destructible>();
-            if(dest != null)
-            {
-                dest.Destroy();
-            }
-        }
-        
-
-        Destroy(grenade);
-    }
 
     public override void Activate(GameObject parent)
     {
-        if(countdown <= 0 && !hasExploded)
-        {
-            hasExploded = true;
-            Explode();
-        }
+        
     }
 
 
