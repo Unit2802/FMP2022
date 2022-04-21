@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -98,7 +98,8 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: 23b0cd7d43858454fb4462da7d0caaaf, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 23b0cd7d43858454fb4462da7d0caaaf,
+    type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -581,8 +582,10 @@ MonoBehaviour:
   roomNameText: {fileID: 650318305}
   roomListContent: {fileID: 286914706}
   PlayerListContent: {fileID: 1987878181}
-  roomListItemPrefrab: {fileID: 3835034806011320120, guid: 78f67f310e3d9a04a8687042bbc2cd34, type: 3}
-  playerListItemPrefrab: {fileID: 3207870325560714753, guid: 4c55e9165268bbb4494e67fadccc31c8, type: 3}
+  roomListItemPrefrab: {fileID: 3835034806011320120, guid: 78f67f310e3d9a04a8687042bbc2cd34,
+    type: 3}
+  playerListItemPrefrab: {fileID: 3207870325560714753, guid: 4c55e9165268bbb4494e67fadccc31c8,
+    type: 3}
   startGameButton: {fileID: 1560170410}
 --- !u!114 &133974038
 MonoBehaviour:
