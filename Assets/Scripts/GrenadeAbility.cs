@@ -40,9 +40,13 @@ public class GrenadeAbility : Ability
             {
                 rb.AddExplosionForce(force, grenade.transform.position, radius);
             }
+            Destructible dest = nearbyObject.GetComponent<Destructible>();
+            if(dest != null)
+            {
+                dest.Destroy();
+            }
         }
-        //Add force
-        //Damage effect
+        
 
         Destroy(grenade);
     }
