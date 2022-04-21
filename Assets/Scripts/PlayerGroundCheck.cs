@@ -5,6 +5,10 @@ using UnityEngine;
 public class PlayerGroundCheck : MonoBehaviour
 {
     PlayerController playerController;
+    [Range(100, 10000)]
+    public float bounceheight;
+
+
 
     private void Awake()
     {
@@ -43,6 +47,10 @@ public class PlayerGroundCheck : MonoBehaviour
         if (collision.gameObject == playerController.gameObject)
             return;
 
+        GameObject bouncer = collision.gameObject;
+		Rigidbody rb = bouncer.GetComponent<Rigidbody>();
+		rb.AddForce(Vector3.up * bounceheight);
+
         playerController.SetGroundedState(true);
     }
 
@@ -61,5 +69,7 @@ public class PlayerGroundCheck : MonoBehaviour
 
         playerController.SetGroundedState(true);
     }
+     
+
 
 }

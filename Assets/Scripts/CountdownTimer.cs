@@ -9,7 +9,7 @@ public class CountdownTimer : MonoBehaviour
     public string levelToLoad;
 
     float currentTime = 0f;
-    float StartingTime = 10f;
+    float StartingTime = 60f;
    
     [SerializeField] Text countdownText;
 
