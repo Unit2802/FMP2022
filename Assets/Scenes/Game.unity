@@ -216,6 +216,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
   m_RootOrder: 6
@@ -225,6 +226,9 @@ Transform:
 =======
   m_RootOrder: 6
 >>>>>>> Stashed changes
+=======
+  m_RootOrder: 7
+>>>>>>> parent of 2976ba6 (del old jump pad)
 =======
   m_RootOrder: 7
 >>>>>>> parent of 2976ba6 (del old jump pad)
@@ -458,11 +462,15 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   m_RootOrder: 4
 =======
   m_RootOrder: 3
 >>>>>>> Stashed changes
+=======
+  m_RootOrder: 5
+>>>>>>> parent of 2976ba6 (del old jump pad)
 =======
   m_RootOrder: 5
 >>>>>>> parent of 2976ba6 (del old jump pad)
@@ -560,6 +568,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 66.772, y: -194.859, z: -214.916}
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -881,6 +890,9 @@ BoxCollider:
 =======
 --- !u!1001 &1484364330
 >>>>>>> parent of 2976ba6 (del old jump pad)
+=======
+--- !u!1001 &1484364330
+>>>>>>> parent of 2976ba6 (del old jump pad)
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -906,7 +918,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 1
+=======
+      value: 3
+>>>>>>> parent of 2976ba6 (del old jump pad)
 =======
       value: 3
 >>>>>>> parent of 2976ba6 (del old jump pad)
@@ -979,6 +995,7 @@ PrefabInstance:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5eecba968b32c8f4c985538b3187db39, type: 3}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1753114343
 GameObject:
   m_ObjectHideFlags: 0
@@ -1025,6 +1042,8 @@ BoxCollider:
   m_Center: {x: -72.31787, y: 1.4982014, z: -3.4730728}
 =======
 >>>>>>> parent of 2976ba6 (del old jump pad)
+=======
+>>>>>>> parent of 2976ba6 (del old jump pad)
 --- !u!1001 &1786348210
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1036,7 +1055,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 2
+=======
+      value: 4
+>>>>>>> parent of 2976ba6 (del old jump pad)
 =======
       value: 4
 >>>>>>> parent of 2976ba6 (del old jump pad)
@@ -1241,7 +1264,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_RootOrder: 4
+=======
+  m_RootOrder: 6
+>>>>>>> parent of 2976ba6 (del old jump pad)
 =======
   m_RootOrder: 6
 >>>>>>> parent of 2976ba6 (del old jump pad)
