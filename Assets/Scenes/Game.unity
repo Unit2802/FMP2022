@@ -215,6 +215,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
   m_RootOrder: 6
@@ -224,6 +225,9 @@ Transform:
 =======
   m_RootOrder: 6
 >>>>>>> Stashed changes
+=======
+  m_RootOrder: 7
+>>>>>>> parent of 2976ba6 (del old jump pad)
   m_LocalEulerAnglesHint: {x: 88.494, y: -359.1, z: -353.626}
 --- !u!1 &297831968
 GameObject:
@@ -453,11 +457,15 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   m_RootOrder: 4
 =======
   m_RootOrder: 3
 >>>>>>> Stashed changes
+=======
+  m_RootOrder: 5
+>>>>>>> parent of 2976ba6 (del old jump pad)
   m_LocalEulerAnglesHint: {x: 43.653, y: 9.606, z: -10.668}
 --- !u!1 &955310833
 GameObject:
@@ -552,6 +560,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 66.772, y: -194.859, z: -214.916}
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 --- !u!1001 &1786348210
@@ -869,6 +878,9 @@ BoxCollider:
   m_Center: {x: -0.43722868, y: 1.1307989, z: -21.630863}
 --- !u!1001 &1484364330
 >>>>>>> Stashed changes
+=======
+--- !u!1001 &1484364330
+>>>>>>> parent of 2976ba6 (del old jump pad)
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -893,7 +905,11 @@ PrefabInstance:
     - target: {fileID: 7165218950951993896, guid: 5eecba968b32c8f4c985538b3187db39,
         type: 3}
       propertyPath: m_RootOrder
+<<<<<<< HEAD
       value: 1
+=======
+      value: 3
+>>>>>>> parent of 2976ba6 (del old jump pad)
       objectReference: {fileID: 0}
     - target: {fileID: 7165218950951993896, guid: 5eecba968b32c8f4c985538b3187db39,
         type: 3}
@@ -962,6 +978,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 608e3d79b0a5763409c180c9173062e9, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5eecba968b32c8f4c985538b3187db39, type: 3}
+<<<<<<< HEAD
 --- !u!1 &1753114343
 GameObject:
   m_ObjectHideFlags: 0
@@ -1006,6 +1023,8 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 150.16571, y: 19.744267, z: 19.100245}
   m_Center: {x: -72.31787, y: 1.4982014, z: -3.4730728}
+=======
+>>>>>>> parent of 2976ba6 (del old jump pad)
 --- !u!1001 &1786348210
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1016,7 +1035,11 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: d2823b619003ff242a130f7803e8f084,
         type: 3}
       propertyPath: m_RootOrder
+<<<<<<< HEAD
       value: 2
+=======
+      value: 4
+>>>>>>> parent of 2976ba6 (del old jump pad)
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d2823b619003ff242a130f7803e8f084,
         type: 3}
@@ -1217,7 +1240,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+<<<<<<< HEAD
   m_RootOrder: 4
+=======
+  m_RootOrder: 6
+>>>>>>> parent of 2976ba6 (del old jump pad)
   m_LocalEulerAnglesHint: {x: 35.376, y: -314.188, z: -285.706}
 --- !u!1 &1965096357
 GameObject:
