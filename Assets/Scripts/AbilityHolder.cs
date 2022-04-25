@@ -5,7 +5,7 @@ using UnityEngine;
 public class AbilityHolder : MonoBehaviour
 {
     //If ability needs a object to go with it
-    public GameObject holyWaterGrenade;
+    public GameObject throwable;
     public Ability ab;
     float cooldownTime;
     float activeTime;

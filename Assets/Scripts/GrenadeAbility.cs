@@ -65,7 +65,7 @@ public class GrenadeAbility : Ability
         Rigidbody projectilerb = projectile.GetComponent<Rigidbody>();
 
         // Add force
-        Vector3 forceToAdd = cam.transform.forward * throwForce + transform.up * throwUpwardForce;
+        Vector3 forceToAdd = cam.transform.forward * throwForce + objectToThrow.transform.up * throwUpwardForce;
     }
 
 }
