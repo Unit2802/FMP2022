@@ -372,7 +372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050c069abf0e0104d9d1150583132ce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holyWaterGrenade: {fileID: 919132149155446097, guid: b22b03f6c4783b44f998413c452c26be,
+  holyWaterGrenade: {fileID: 3882166421292267619, guid: 44f75fefc21794942bd526601d2dd352,
     type: 3}
   ab: {fileID: 11400000, guid: 2d02a58714853f347867530aec72b938, type: 2}
   key: 103
