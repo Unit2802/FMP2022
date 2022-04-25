@@ -62,10 +62,16 @@ public class GrenadeAbility : Ability
         GameObject projectile = Instantiate(objectToThrow, attackPoint.position, cam.rotation);
 
         // Get rigidbody component
-        Rigidbody projectilerb = projectile.GetComponent<Rigidbody>();
+        Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
 
         // Add force
         Vector3 forceToAdd = cam.transform.forward * throwForce + objectToThrow.transform.up * throwUpwardForce;
+
+        projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
+
+        totalThrows--;
     }
+
+    
 
 }
