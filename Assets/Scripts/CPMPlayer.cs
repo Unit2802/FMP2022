@@ -20,11 +20,12 @@ public class CPMPlayer : MonoBehaviour
     //
     /*Frame occuring factors*/
     public float gravity = 20.0f;
-
+    
     public float friction = 6; //Ground friction
 
     /* Movement stuff */
-    public float moveSpeed = 7.0f;                // Ground move speed
+    public float moveSpeed = 7.0f;
+    public float currentMoveSpeed;
     public float runAcceleration = 14.0f;         // Ground accel
     public float runDeacceleration = 10.0f;       // Deacceleration that occurs when running on the ground
     public float airAcceleration = 2.0f;          // Air accel
@@ -32,7 +33,8 @@ public class CPMPlayer : MonoBehaviour
     public float airControl = 0.3f;               // How precise air control is
     public float sideStrafeAcceleration = 50.0f;  // How fast acceleration occurs to get up to sideStrafeSpeed when
     public float sideStrafeSpeed = 1.0f;          // What the max speed to generate when side strafing
-    public float jumpSpeed = 8.0f;                // The speed at which the character's up axis gains when hitting jump
+    public float jumpSpeed = 8.0f;
+    public float currentJumpSpeed;          // The speed at which the character's up axis gains when hitting jump
     public bool holdJumpToBhop = false;           // When enabled allows player to just hold jump button to keep on bhopping perfectly. Beware: smells like casual.
 
     /*print() style */
@@ -204,6 +206,8 @@ public class CPMPlayer : MonoBehaviour
 
         float wishspeed = wishdir.magnitude;
         wishspeed *= moveSpeed;
+        currentMoveSpeed = moveSpeed;
+        currentJumpSpeed = jumpSpeed;
 
         wishdir.Normalize();
         moveDirectionNorm = wishdir;
@@ -367,4 +371,22 @@ public class CPMPlayer : MonoBehaviour
         GUI.Label(new Rect(0, 30, 400, 100), "Top Speed: " + Mathf.Round(playerTopVelocity * 100) / 100 + "ups", style);
     }
     */
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        switch(hit.gameObject.tag)
+        {
+            case "SpeedBoost":
+                moveSpeed = 25f;
+                break;
+            case "JumpPad":
+                jumpSpeed = 25f;
+                break;
+            case "Ground":
+                jumpSpeed = currentJumpSpeed;
+                moveSpeed = currentMoveSpeed;
+                break;
+        }
+    }
+
 }
