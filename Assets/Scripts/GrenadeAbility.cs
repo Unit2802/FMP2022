@@ -3,46 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-[CreateAssetMenu]
-public class GrenadeAbility : Ability
+
+public class GrenadeAbility : MonoBehaviour
 {
-    
+
     [Header("References")]
     public Transform cam;
     public Transform attackPoint;
     public GameObject objectToThrow;
     CPMPlayer player;
-    
 
     [Header("Settings")]
     public int totalThrows;
     public float throwCooldown;
 
     [Header("Throwing")]
-    AbilityHolder ab;
-    KeyCode throwKey;
     public float throwForce;
     public float throwUpwardForce;
+    public KeyCode throwKey;
+    
 
     bool readyToThrow;
 
-
-    public override void Activate(GameObject parent)
+    private void Start()
     {
-        readyToThrow = true;
-
-        if (ab == null)
-        {
-            ab = GameObject.Find("PlayerController").GetComponent<AbilityHolder>();
-        }
         if (player == null)
         {
             player = GameObject.Find("PlayerController").GetComponent<CPMPlayer>();
-           
+
         }
-
-
-        throwKey = ab.key;
+    }
+    private void Update()
+    {
+        readyToThrow = true;
         cam = player.playerView;
 
 
@@ -65,12 +58,23 @@ public class GrenadeAbility : Ability
         Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
 
         // Add force
-        Vector3 forceToAdd = cam.transform.forward * throwForce + objectToThrow.transform.up * throwUpwardForce;
+        Vector3 forceToAdd = cam.transform.forward * throwForce + transform.up * throwUpwardForce;
 
         projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
 
         totalThrows--;
+
+        // Implement throwCooldownuu
+        Invoke(nameof(ResetThrow), throwCooldown);
+        
+
     }
+
+    private void ResetThrow()
+    {
+        readyToThrow = true;
+    }
+
 
     
 
