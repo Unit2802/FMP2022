@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 0.36
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 47b7a45414f3b564e9e8349bfa18b29f, type: 2}
@@ -13171,8 +13171,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5524054034798037570, guid: d2823b619003ff242a130f7803e8f084,
         type: 3}
+      propertyPath: m_ReceiveGI
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524054034798037570, guid: d2823b619003ff242a130f7803e8f084,
+        type: 3}
       propertyPath: m_CastShadows
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524054034798037570, guid: d2823b619003ff242a130f7803e8f084,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5524054034798037570, guid: d2823b619003ff242a130f7803e8f084,
         type: 3}
@@ -13181,8 +13191,18 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 6f69f1eb046b9b04fba5975ff9f76bba, type: 2}
     - target: {fileID: 8880968423885794599, guid: d2823b619003ff242a130f7803e8f084,
         type: 3}
+      propertyPath: m_ReceiveGI
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880968423885794599, guid: d2823b619003ff242a130f7803e8f084,
+        type: 3}
       propertyPath: m_CastShadows
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880968423885794599, guid: d2823b619003ff242a130f7803e8f084,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8880968423885794599, guid: d2823b619003ff242a130f7803e8f084,
         type: 3}
