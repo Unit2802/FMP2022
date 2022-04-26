@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class JumpBoost : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
-    {
-        GameObject block = collision.gameObject;
-        Rigidbody rb = block.GetComponent<Rigidbody>();
-        rb.AddForce(Vector3.up * 5000);
-    }
+   [Range(100, 10000)]
+   public float bounceheight;
+
+
+
+   private void OnCollisionEnter(Collision collision)
+   {
+		
+		GameObject bouncer = collision.gameObject;
+		Rigidbody rb = bouncer.GetComponent<Rigidbody>();
+		rb.AddForce(Vector3.up * bounceheight);
+   }
 }
