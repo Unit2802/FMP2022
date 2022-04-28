@@ -154,6 +154,7 @@ GameObject:
   - component: {fileID: -8343601135603798507}
   - component: {fileID: -4171798805208577145}
   - component: {fileID: 4237125992999357399}
+  - component: {fileID: 3314217881957497042}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Player
@@ -412,6 +413,18 @@ MonoBehaviour:
   throwForce: 70
   throwUpwardForce: 0
   throwKey: 103
+--- !u!114 &3314217881957497042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5321976912562714375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb6a66dbb3feba14c8cc9cf109c8f315, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6927049559810212207
 GameObject:
   m_ObjectHideFlags: 0
