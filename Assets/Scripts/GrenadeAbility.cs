@@ -29,7 +29,7 @@ public class GrenadeAbility : MonoBehaviour
     {
         if (player == null)
         {
-            player = GameObject.Find("PlayerController").GetComponent<CPMPlayer>();
+            player = GameObject.FindWithTag("Player").GetComponent<CPMPlayer>();
 
         }
     }
@@ -45,6 +45,9 @@ public class GrenadeAbility : MonoBehaviour
             Throw();
         }
 
+        Debug.Log(totalThrows);
+
+
     }
 
     private void Throw()
@@ -56,6 +59,16 @@ public class GrenadeAbility : MonoBehaviour
 
         // Get rigidbody component
         Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
+
+        // Calculate direction
+        Vector3 forceDirection = cam.transform.forward;
+
+        RaycastHit hit;
+
+        if(Physics.Raycast(cam.position, cam.forward, out hit, 500f))
+        {
+            forceDirection = (hit.point - attackPoint.position).normalized;
+        }
 
         // Add force
         Vector3 forceToAdd = cam.transform.forward * throwForce + transform.up * throwUpwardForce;
