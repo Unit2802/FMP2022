@@ -15,12 +15,12 @@ public class CPMPlayer : MonoBehaviour
 {
     public Transform playerView;     // Camera
     public float playerViewYOffset = 0.6f; // The height at which the camera is bound to
-   /* public float xSense = 30.0f;
-    public float ySense = 30.0f; */
+    /* public float xSense = 30.0f;
+     public float ySense = 30.0f; */
     //
     /*Frame occuring factors*/
     public float gravity = 20.0f;
-    
+
     public float friction = 6; //Ground friction
 
     /* Movement stuff */
@@ -36,6 +36,8 @@ public class CPMPlayer : MonoBehaviour
     public float jumpSpeed = 8.0f;
     public float currentJumpSpeed;          // The speed at which the character's up axis gains when hitting jump
     public bool holdJumpToBhop = false;           // When enabled allows player to just hold jump button to keep on bhopping perfectly. Beware: smells like casual.
+
+    [SerializeField] private float setJumpSpeed;
 
     /*print() style */
     public GUIStyle style;
@@ -71,6 +73,8 @@ public class CPMPlayer : MonoBehaviour
     private void Awake()
     {
         PV = GetComponent<PhotonView>();
+
+        setJumpSpeed = jumpSpeed;
     }
     private void Start()
     {
@@ -372,21 +376,35 @@ public class CPMPlayer : MonoBehaviour
     }
     */
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        switch(hit.gameObject.tag)
+    private void OnTriggerEnter(Collider other)
+    { 
+        if (other.gameObject.CompareTag("JumpPad"))
         {
-            case "SpeedBoost":
-                moveSpeed = 25f;
-                break;
-            case "JumpPad":
-                jumpSpeed = 25f;
-                break;
-            case "Ground":
-                jumpSpeed = currentJumpSpeed;
-                moveSpeed = currentMoveSpeed;
-                break;
+            jumpSpeed = 25;
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("JumpPad"))
+        {
+            jumpSpeed = setJumpSpeed;
+        }
+    }
 }
+        
+      
+        
+        
+        
+        
+        
+        /* case "JumpPad":
+                    jumpSpeed = 25f;
+            break;
+                case "Ground":
+                    jumpSpeed = currentJumpSpeed;
+            moveSpeed = currentMoveSpeed;
+            break;
+
+        }*/

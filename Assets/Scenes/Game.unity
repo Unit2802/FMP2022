@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.006871491, g: 0.042859007, b: 0.38062647, a: 1}
+  m_IndirectSpecularColor: {r: 0.028079044, g: 0.0073431516, b: 0.060991682, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -603,6 +603,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7165218950951993890, guid: 5eecba968b32c8f4c985538b3187db39,
+        type: 3}
+      propertyPath: m_TagString
+      value: JumpPad
+      objectReference: {fileID: 0}
     - target: {fileID: 7165218950951993891, guid: 5eecba968b32c8f4c985538b3187db39,
         type: 3}
       propertyPath: m_UseGravity
@@ -678,8 +683,29 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 608e3d79b0a5763409c180c9173062e9, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7165218950951993891, guid: 5eecba968b32c8f4c985538b3187db39, type: 3}
+    - {fileID: 7165218950951993900, guid: 5eecba968b32c8f4c985538b3187db39, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5eecba968b32c8f4c985538b3187db39, type: 3}
+--- !u!1 &1484364331 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7165218950951993890, guid: 5eecba968b32c8f4c985538b3187db39,
+    type: 3}
+  m_PrefabInstance: {fileID: 1484364330}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1484364332
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484364331}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.95, y: 29.82, z: 0.95}
+  m_Center: {x: 0, y: 12.52, z: 0}
 --- !u!1001 &1786348210
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -771,6 +797,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MainMap
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d2823b619003ff242a130f7803e8f084,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 5524054034798037570, guid: d2823b619003ff242a130f7803e8f084,
         type: 3}

@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: -7918802433188882946}
   m_Layer: 0
   m_Name: PlayerController
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -275,6 +275,7 @@ MonoBehaviour:
   jumpSpeed: 8
   currentJumpSpeed: 0
   holdJumpToBhop: 0
+  setJumpSpeed: 0
   style:
     m_Name: 
     m_Normal:
