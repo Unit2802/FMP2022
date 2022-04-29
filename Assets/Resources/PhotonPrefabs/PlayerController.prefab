@@ -408,10 +408,10 @@ MonoBehaviour:
   attackPoint: {fileID: 2922993229324954368}
   objectToThrow: {fileID: 6194406720561620481, guid: 139a2967adc8f6848a856d390b2597d3,
     type: 3}
-  totalThrows: 100
+  totalThrows: 2
   throwCooldown: 0.1
-  throwForce: 70
-  throwUpwardForce: 0
+  throwForce: 5
+  throwUpwardForce: 5
   throwKey: 103
 --- !u!114 &3314217881957497042
 MonoBehaviour:
@@ -425,6 +425,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb6a66dbb3feba14c8cc9cf109c8f315, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 20
+  destroyOnHit: 0
+  muzzleEffect: {fileID: 0}
+  hitEffect: {fileID: 0}
+  isExplosive: 1
+  explosionRadius: 30
+  explosionForce: 20
+  explosionDamage: 50
+  explosionEffect: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664,
+    type: 3}
 --- !u!1 &6927049559810212207
 GameObject:
   m_ObjectHideFlags: 0
