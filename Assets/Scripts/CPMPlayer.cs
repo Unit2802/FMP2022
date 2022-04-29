@@ -380,7 +380,7 @@ public class CPMPlayer : MonoBehaviour
     { 
         if (other.gameObject.CompareTag("JumpPad"))
         {
-            jumpSpeed = 25;
+            jumpSpeed = 15;
         }
     }
 
