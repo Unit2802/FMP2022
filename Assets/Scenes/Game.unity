@@ -19039,6 +19039,7 @@ GameObject:
   - component: {fileID: 925058781}
   - component: {fileID: 925058780}
   - component: {fileID: 925058784}
+  - component: {fileID: 925058785}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -19137,6 +19138,19 @@ MonoBehaviour:
   maxHeight: 7
   minHeight: 0
   timeToMove: 10
+--- !u!65 &925058785
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925058779}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000001, y: 8.804403, z: 1}
+  m_Center: {x: 0, y: 3.9022017, z: 0}
 --- !u!1 &927873024
 GameObject:
   m_ObjectHideFlags: 0
