@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class ProjectileAddon : MonoBehaviour
 {
+    GrenadeAbility gA;
+
     [Header("Stats")]
     public int damage;
     public bool destroyOnHit;
-
-    [Header("Effects")]
-    public GameObject muzzleEffect;
-    public GameObject hitEffect;
 
     [Header("Explosive Projectile")]
     public bool isExplosive;
@@ -21,30 +19,48 @@ public class ProjectileAddon : MonoBehaviour
 
     private Rigidbody rb;
 
-    // Start is called before the first frame update
-    void Start()
+    private bool hitTarget;
+
+    private void Start()
     {
+        // get rigidbody component
         rb = GetComponent<Rigidbody>();
+        gA = GetComponent<GrenadeAbility>();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-      // check if you hit an enemy
-      if(collision.gameObject.GetComponent<Enemy>() != null)
-      {
+        if (hitTarget)
+            return;
+        else
+            hitTarget = true;
+
+        // enemy hit
+        if (collision.gameObject.GetComponent<Enemy>() != null)
+        {
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
 
-            enemy.TakeDamage(damage); 
+            // deal damage to the enemy
+            enemy.TakeDamage(damage);
 
-            Destroy(gameObject);
 
-            // explode projectile if it's explosive
-            if (isExplosive)
-            {
-                Explode();
-                return;
-            }
-      }
+            // destroy projectile
+            if (!isExplosive && destroyOnHit)
+                Invoke(nameof(DestroyProjectile), 0.1f);
+        }
+
+        // explode projectile if it's explosive
+        if (isExplosive)
+        {
+            Explode();
+            return;
+        }
+
+        // make sure projectile sticks to surface
+        rb.isKinematic = true;
+
+        // make sure projectile moves with target
+        transform.SetParent(collision.transform);
     }
 
     private void Explode()
@@ -92,7 +108,7 @@ public class ProjectileAddon : MonoBehaviour
 
     private void DestroyProjectile()
     {
-        Destroy(gameObject);
+        Destroy(gA.objectToThrow);
     }
 
     // just graphics stuff
@@ -101,5 +117,4 @@ public class ProjectileAddon : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
-
 }
