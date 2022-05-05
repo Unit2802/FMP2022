@@ -45,7 +45,7 @@ public class GrenadeAbility : MonoBehaviour
             Throw();
         }
 
-        Debug.Log(totalThrows);
+        //Debug.Log(totalThrows);
 
 
     }
@@ -59,6 +59,7 @@ public class GrenadeAbility : MonoBehaviour
 
         // Get rigidbody component
         Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
+        projectile.GetComponent<ProjectileAddon>().player = gameObject;
 
         // Calculate direction
         Vector3 forceDirection = cam.transform.forward;

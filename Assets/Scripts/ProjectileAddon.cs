@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProjectileAddon : MonoBehaviour
 {
-    GrenadeAbility gA;
+   
 
     [Header("Stats")]
     public int damage;
@@ -20,47 +20,46 @@ public class ProjectileAddon : MonoBehaviour
     private Rigidbody rb;
 
     private bool hitTarget;
+    public GameObject player;
 
     private void Start()
     {
         // get rigidbody component
         rb = GetComponent<Rigidbody>();
-        gA = GetComponent<GrenadeAbility>();
+        
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (hitTarget)
-            return;
-        else
-            hitTarget = true;
-
-        // enemy hit
-        if (collision.gameObject.GetComponent<Enemy>() != null)
+        if (collision.gameObject != player)
         {
-            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+            // enemy hit
+            if (collision.gameObject.GetComponent<Enemy>() != null)
+            {
+                Enemy enemy = collision.gameObject.GetComponent<Enemy>();
 
-            // deal damage to the enemy
-            enemy.TakeDamage(damage);
+                // deal damage to the enemy
+                enemy.TakeDamage(damage);
 
 
-            // destroy projectile
-            if (!isExplosive && destroyOnHit)
-                Invoke(nameof(DestroyProjectile), 0.1f);
+                // destroy projectile
+                if (!isExplosive && destroyOnHit)
+                    Invoke(nameof(DestroyProjectile), 0.1f);
+            }
+
+            // explode projectile if it's explosive
+            if (isExplosive)
+            {
+                Explode();
+                return;
+            }
+
+            // make sure projectile sticks to surface
+            rb.isKinematic = true;
+
+            // make sure projectile moves with target
+            transform.SetParent(collision.transform);
         }
-
-        // explode projectile if it's explosive
-        if (isExplosive)
-        {
-            Explode();
-            return;
-        }
-
-        // make sure projectile sticks to surface
-        rb.isKinematic = true;
-
-        // make sure projectile moves with target
-        transform.SetParent(collision.transform);
     }
 
     private void Explode()
@@ -97,7 +96,7 @@ public class ProjectileAddon : MonoBehaviour
                     // apply force to object in range
                     objectsInRange[i].GetComponent<Rigidbody>().AddForceAtPosition(forceDirection * explosionForce + Vector3.up * explosionForce, transform.position + new Vector3(0, -0.5f, 0), ForceMode.Impulse);
 
-                    Debug.Log("Kabooom " + objectsInRange[i].name);
+                    //Debug.Log("Kabooom " + objectsInRange[i].name);
                 }
             }
         }
@@ -108,7 +107,7 @@ public class ProjectileAddon : MonoBehaviour
 
     private void DestroyProjectile()
     {
-        Destroy(gA.objectToThrow);
+        Destroy(this.gameObject);
     }
 
     // just graphics stuff

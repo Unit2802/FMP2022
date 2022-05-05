@@ -154,7 +154,6 @@ GameObject:
   - component: {fileID: -8343601135603798507}
   - component: {fileID: -4171798805208577145}
   - component: {fileID: 4237125992999357399}
-  - component: {fileID: 3314217881957497042}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Player
@@ -297,6 +296,7 @@ MonoBehaviour:
   gravity: 20
   friction: 6
   moveSpeed: 7
+  currentMoveSpeed: 0
   runAcceleration: 25
   runDeacceleration: 20
   airAcceleration: 2
@@ -305,7 +305,9 @@ MonoBehaviour:
   sideStrafeAcceleration: 50
   sideStrafeSpeed: 1
   jumpSpeed: 8
+  currentJumpSpeed: 0
   holdJumpToBhop: 1
+  setJumpSpeed: 0
   style:
     m_Name: 
     m_Normal:
@@ -413,26 +415,6 @@ MonoBehaviour:
   throwForce: 5
   throwUpwardForce: 5
   throwKey: 103
---- !u!114 &3314217881957497042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5321976912562714375}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb6a66dbb3feba14c8cc9cf109c8f315, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 20
-  destroyOnHit: 0
-  isExplosive: 1
-  explosionRadius: 30
-  explosionForce: 20
-  explosionDamage: 50
-  explosionEffect: {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3,
-    type: 3}
 --- !u!1 &6927049559810212207
 GameObject:
   m_ObjectHideFlags: 0

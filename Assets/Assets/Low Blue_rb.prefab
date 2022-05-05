@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5689744421930764244}
   - component: {fileID: 6828108436724398637}
   - component: {fileID: 2662150252812259023}
+  - component: {fileID: 6230981145462877952}
   m_Layer: 0
   m_Name: Low Blue_rb
   m_TagString: Untagged
@@ -115,3 +116,23 @@ CapsuleCollider:
   m_Height: 0.46429816
   m_Direction: 1
   m_Center: {x: 0.003076695, y: -0.0064472407, z: -0.001213938}
+--- !u!114 &6230981145462877952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6194406720561620481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb6a66dbb3feba14c8cc9cf109c8f315, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20
+  destroyOnHit: 0
+  isExplosive: 1
+  explosionRadius: 30
+  explosionForce: 20
+  explosionDamage: 50
+  explosionEffect: {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3,
+    type: 3}
