@@ -15,14 +15,14 @@ public class Elevator : MonoBehaviour
     {
        if (other.tag == "Player")
        {
-              if(Input.GetKey(KeyCode.UpArrow))
+              if(Input.GetKey(KeyCode.W))
               {
                     if(gameObject.transform.position.y < maxHeight)
                     {
                         transform.DOMoveY(maxHeight, timeToMove);
                     }
               }
-       }      if(Input.GetKey(KeyCode.DownArrow))
+       }      if(Input.GetKey(KeyCode.S))
               {
                   if(gameObject.transform.position.y > minHeight)
                   {
