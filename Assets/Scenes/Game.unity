@@ -13353,9 +13353,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cef58768f10649949b475f311987c5c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHeight: 10
+  maxHeight: 8
   minHeight: 0
-  timeToMove: 20
+  timeToMove: 30
 --- !u!65 &571582230
 BoxCollider:
   m_ObjectHideFlags: 0
