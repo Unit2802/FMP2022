@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6194406720561620481}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.000049740403, y: 1.453, z: 0}
+  m_LocalPosition: {x: -0.000049740403, y: 1.4517, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -62,9 +62,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7791486788655378091, guid: 685aa35c0b51e7c42813aa5ce8e30d25, type: 3}
-  - {fileID: 5561349426305759274, guid: 685aa35c0b51e7c42813aa5ce8e30d25, type: 3}
-  - {fileID: 8659303113356582851, guid: 685aa35c0b51e7c42813aa5ce8e30d25, type: 3}
+  - {fileID: 2100000, guid: f8412dc944805c243b8a67c604143b7a, type: 2}
+  - {fileID: 2100000, guid: 4d93b97d879b0c347add7f732b8510a9, type: 2}
+  - {fileID: 2100000, guid: e268aae7b8c206940b2e46bfeda01460, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -136,3 +136,4 @@ MonoBehaviour:
   explosionDamage: 50
   explosionEffect: {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3,
     type: 3}
+  player: {fileID: 0}
