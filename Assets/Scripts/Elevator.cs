@@ -32,5 +32,16 @@ public class Elevator : MonoBehaviour
               }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag != "Player")
+        {
+            if(gameObject.transform.position.y > minHeight)
+            {
+                transform.DOMoveY(minHeight, timeToMove * 2);
+            }
+        }
+    }
+
     
 }

@@ -13321,7 +13321,7 @@ GameObject:
   - component: {fileID: 571582229}
   - component: {fileID: 571582228}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Elevator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13354,7 +13354,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHeight: 8
   minHeight: 0
-  timeToMove: 30
+  timeToMove: 5
 --- !u!65 &571582230
 BoxCollider:
   m_ObjectHideFlags: 0
