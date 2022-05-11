@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class MiniMap : MonoBehaviour
 {
-    public Transform player;
+    Transform player;
 
+    private void Awake()
+    {
+        player = GameObject.FindWithTag("Player").GetComponent<Transform>();
+    }
     private void LateUpdate()
     {
         Vector3 newPosition = player.position;
