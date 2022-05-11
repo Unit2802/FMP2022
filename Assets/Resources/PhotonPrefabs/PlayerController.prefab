@@ -502,8 +502,8 @@ MonoBehaviour:
     type: 3}
   totalThrows: 2
   throwCooldown: 0.1
-  throwForce: 5
-  throwUpwardForce: 5
+  throwForce: 25
+  throwUpwardForce: 4
   throwKey: 102
 --- !u!1 &9108192949865073845
 GameObject:
