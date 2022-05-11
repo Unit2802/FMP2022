@@ -13,17 +13,20 @@ struct Cmd
 
 public class CPMPlayer : MonoBehaviour
 {
+    [Header("Camera stuff")]
     public Transform playerView;     // Camera
     public float playerViewYOffset = 0.6f; // The height at which the camera is bound to
     /* public float xSense = 30.0f;
      public float ySense = 30.0f; */
     //
     /*Frame occuring factors*/
+    [Header("Frame occuring factors")]
     public float gravity = 20.0f;
 
     public float friction = 6; //Ground friction
 
     /* Movement stuff */
+    [Header("Movement")]
     public float moveSpeed = 7.0f;
     public float currentMoveSpeed;
     public float runAcceleration = 14.0f;         // Ground accel

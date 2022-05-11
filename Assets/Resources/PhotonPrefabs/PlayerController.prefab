@@ -304,7 +304,7 @@ MonoBehaviour:
   sideStrafeAcceleration: 50
   sideStrafeSpeed: 1
   jumpSpeed: 8
-  doubleJS: 16
+  doubleJS: 10
   currentJumpSpeed: 0
   holdJumpToBhop: 0
   setJumpSpeed: 0
