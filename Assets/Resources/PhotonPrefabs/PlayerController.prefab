@@ -304,8 +304,9 @@ MonoBehaviour:
   sideStrafeAcceleration: 50
   sideStrafeSpeed: 1
   jumpSpeed: 8
+  doubleJS: 16
   currentJumpSpeed: 0
-  holdJumpToBhop: 1
+  holdJumpToBhop: 0
   setJumpSpeed: 0
   style:
     m_Name: 
@@ -375,6 +376,9 @@ MonoBehaviour:
     m_StretchWidth: 1
     m_StretchHeight: 0
   fpsDisplayRate: 4
+  playerVelocity: {x: 0, y: 0, z: 0}
+  wishJump: 0
+  abilityActive: 1
 --- !u!143 &-4171798805208577145
 CharacterController:
   m_ObjectHideFlags: 0

@@ -34,8 +34,11 @@ public class CPMPlayer : MonoBehaviour
     public float sideStrafeAcceleration = 50.0f;  // How fast acceleration occurs to get up to sideStrafeSpeed when
     public float sideStrafeSpeed = 1.0f;          // What the max speed to generate when side strafing
     public float jumpSpeed = 8.0f;
+    public float doubleJS = 16.0f;
     public float currentJumpSpeed;          // The speed at which the character's up axis gains when hitting jump
     public bool holdJumpToBhop = false;           // When enabled allows player to just hold jump button to keep on bhopping perfectly. Beware: smells like casual.
+
+    
 
     [SerializeField] private float setJumpSpeed;
 
@@ -56,11 +59,11 @@ public class CPMPlayer : MonoBehaviour
     private float rotY = 0.0f;
 
     private Vector3 moveDirectionNorm = Vector3.zero;
-    private Vector3 playerVelocity = Vector3.zero;
+    public Vector3 playerVelocity = Vector3.zero;
     private float playerTopVelocity = 0.0f;
 
     // Q3: players can queue the next jump just before he hits the ground
-    private bool wishJump = false;
+    public bool wishJump = false;
 
     // Used to display real time fricton values
     private float playerFriction = 0.0f;
@@ -69,6 +72,11 @@ public class CPMPlayer : MonoBehaviour
     private Cmd _cmd;
 
     PhotonView PV;
+
+    private bool canDoubleJump;
+    [Header("Test")]                                                                                                                                                                                                          public bool abilityActive;
+
+    bool hasDoubleJumped = false;                                                                                                                   
 
     private void Awake()
     {
@@ -105,6 +113,7 @@ public class CPMPlayer : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("Double Jump is: " + canDoubleJump);
 
         if (!PV.IsMine)
             return;
@@ -143,9 +152,27 @@ public class CPMPlayer : MonoBehaviour
         /* Movement, here's the important part */
         QueueJump();
         if (_controller.isGrounded)
+        {
             GroundMove();
+            hasDoubleJumped = false;
+        }
         else if (!_controller.isGrounded)
+        {
             AirMove();
+            if(!hasDoubleJumped && Input.GetButton("Jump"))
+            {
+                if(wishJump)
+                {
+                    playerVelocity.y = doubleJS;
+                    hasDoubleJumped = true;
+                    wishJump = false;
+
+                }
+            }
+
+        }
+
+
 
         // Move the controller
         _controller.Move(playerVelocity * Time.deltaTime);
@@ -283,8 +310,9 @@ public class CPMPlayer : MonoBehaviour
     /**
      * Called every frame when the engine detects that the player is on the ground
      */
-    private void GroundMove()
+    public void GroundMove()
     {
+
         Vector3 wishdir;
 
         // Do not apply friction if the player is queueing up the next jump
