@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Red
-  m_Shader: {fileID: 47, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _ALPHATEST_ON _EMISSION _GLOSSYREFLECTIONS_OFF _METALLICGLOSSMAP
     _NORMALMAP _SPECULARHIGHLIGHTS_OFF
   m_LightmapFlags: 1
@@ -22,7 +22,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 149fc92a1a1009848a6ccdad31c849b2, type: 3}
+        m_Texture: {fileID: 2800000, guid: f34ef5692690d9b4dba262e834dc6afb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -38,19 +38,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 2800000, guid: 69b912b592595eb42a9ee0b86f6c80e0, type: 3}
+        m_Texture: {fileID: 2800000, guid: bd8719642f5cafd44b6729deb1f61e17, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: a969ac8e1d73a8747a59c15d1fd59b40, type: 3}
+        m_Texture: {fileID: 2800000, guid: 060caa0842ce69743b0584588d23e637, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: 4c8e282b7c0f0b24ebcb07041a8f9ae5, type: 3}
+        m_Texture: {fileID: 2800000, guid: 10deed9ab4ea12d46ac65e341d823e55, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 2800000, guid: 352c9b89535dfd741ade58c782be166b, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
@@ -63,11 +63,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 0.61
-    - _Cutoff: 0.5
+    - _Cutoff: 0.539
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _GlossMapScale: 1
-    - _Glossiness: 0.86
+    - _GlossMapScale: 0.261
+    - _Glossiness: 1
     - _GlossyReflections: 0
     - _Metallic: 0
     - _Mode: 1
