@@ -78,7 +78,7 @@ public class GrenadeAbility : MonoBehaviour
 
         totalThrows--;
 
-        // Implement throwCooldownuu
+        // Implement throwCooldown
         Invoke(nameof(ResetThrow), throwCooldown);
         
 

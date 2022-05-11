@@ -26,6 +26,7 @@ public class ProjectileAddon : MonoBehaviour
     {
         // get rigidbody component
         rb = GetComponent<Rigidbody>();
+        player = GameObject.FindWithTag("Player");
         
     }
 

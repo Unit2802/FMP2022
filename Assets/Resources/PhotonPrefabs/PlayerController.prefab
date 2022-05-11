@@ -504,7 +504,7 @@ MonoBehaviour:
   throwCooldown: 0.1
   throwForce: 5
   throwUpwardForce: 5
-  throwKey: 103
+  throwKey: 102
 --- !u!1 &9108192949865073845
 GameObject:
   m_ObjectHideFlags: 0
