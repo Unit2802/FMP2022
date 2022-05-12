@@ -3,36 +3,89 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class CountdownTimer : MonoBehaviour
 {
-    public string levelToLoad;
+    private float timeDuration = 3f;
 
-    float currentTime = 0f;
-    float StartingTime = 60f;
-   
-    [SerializeField] Text countdownText;
+    [SerializeField]
+    private bool countDown = true;
 
-    private void Start()
-    {
-        currentTime = StartingTime;
-    }
+    private float timer;
+
+    [SerializeField]
+    private TextMeshProUGUI firstMinute;
+    [SerializeField]
+    private TextMeshProUGUI SecondMinute;
+    [SerializeField]
+    private TextMeshProUGUI Seperator;
+    [SerializeField]
+    private TextMeshProUGUI firstSecond;
+    [SerializeField]
+    private TextMeshProUGUI secondSecond;
+
 
     private void Update()
     {
-        currentTime -= 1 * Time.deltaTime;
-        countdownText.text = currentTime.ToString ("0");
-
-        if (currentTime <= 0)
+        if (timer > 0)
         {
-            currentTime = 0;
+            timer -= Time.deltaTime;
+            UpdateTimerDisplay(timer);
         }
-
-        if (currentTime <= 0)
+        else
         {
-            Application.LoadLevel(1);
+            Flash();
+        }
+        
+    }
+
+    private void ResetTimer()
+    {
+        if (countDown)
+        {
+            timer = timeDuration;
+        }
+        else
+        {
+            timer = 0;
+        }
+        SetTextDisplay(true);
+    }
+
+
+    private void UpdateTimerDisplay(float time)
+    {
+        float minutes = Mathf.FloorToInt(time / 60);
+        float seconds = Mathf.FloorToInt(time % 60);
+
+        string currentTime = string.Format("{00:00}{1:00}", minutes, seconds);
+        firstMinute.text = currentTime[0].ToString();
+        SecondMinute.text = currentTime[1].ToString();
+        firstSecond.text = currentTime[2].ToString();
+        secondSecond.text = currentTime[3].ToString();
+    }
+
+    private void Flash()
+    {
+        if(timer != 0)
+        {
+            timer = 0;
+            UpdateTimerDisplay(timer);
+            SceneManager.LoadScene(1);
         }
     }
-    
+
+    private void SetTextDisplay(bool enabled)
+    {
+        firstMinute.enabled = enabled;
+        SecondMinute.enabled = enabled;
+        firstSecond.enabled = enabled;
+        secondSecond.enabled = enabled;
+        Seperator.enabled = enabled;
+    }
+   
 }
+
+
 
