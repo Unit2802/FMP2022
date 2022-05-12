@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 622bb3b201118134aa667ddc29dcf7d1
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - teamSelectionOne: {instanceID: 0}
+  - teamSelectionTwo: {instanceID: 0}
+  - player: {fileID: 5321976912562714375, guid: 6c85a0e7a5a3323489918b2771566c83, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
