@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 708894106}
   m_LocalRotation: {x: 0.6571536, y: -0.26119906, z: 0.26115948, w: 0.65705407}
-  m_LocalPosition: {x: -0.37, y: 11.23, z: -0.4}
+  m_LocalPosition: {x: -0.36999512, y: 18.410004, z: -0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4018374060692857806}
@@ -241,8 +241,8 @@ GameObject:
   - component: {fileID: -8343601135603798507}
   - component: {fileID: -4171798805208577145}
   - component: {fileID: 4237125992999357399}
-  m_Layer: 0
-  m_Name: PlayerController
+  m_Layer: 6
+  m_Name: PlayerControllerBlue
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -290,7 +290,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: dd6751c1d769dbb4080640dbe37424be, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
