@@ -70,3 +70,37 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Assets/Assets/vines low.obj
+Assets/Assets/vines low.obj.meta
+Assets/Assets/vines.meta
+Assets/Assets/vines/1kvines.fbx
+Assets/Assets/vines/1kvines.fbx.meta
+Assets/Assets/vines/initialShadingGroup_Base_color.png
+Assets/Assets/vines/initialShadingGroup_Base_color.png.meta
+Assets/Assets/vines/initialShadingGroup_Height.png
+Assets/Assets/vines/initialShadingGroup_Height.png.meta
+Assets/Assets/vines/initialShadingGroup_Metallic.png
+Assets/Assets/vines/initialShadingGroup_Metallic.png.meta
+Assets/Assets/vines/initialShadingGroup_Mixed_AO.png
+Assets/Assets/vines/initialShadingGroup_Mixed_AO.png.meta
+Assets/Assets/vines/initialShadingGroup_Normal.png
+Assets/Assets/vines/initialShadingGroup_Normal.png.meta
+Assets/Assets/vines/initialShadingGroup_Normal_DirectX.png
+Assets/Assets/vines/initialShadingGroup_Normal_DirectX.png.meta
+Assets/Assets/vines/initialShadingGroup_Opacity.png
+Assets/Assets/vines/initialShadingGroup_Opacity.png.meta
+Assets/Assets/vines/initialShadingGroup_Roughness.png
+Assets/Assets/vines/initialShadingGroup_Roughness.png.meta
+Assets/Assets/vines/Vines.mat
+Assets/Assets/vines/Vines.mat.meta
+Assets/Assets/vines/vines.obj
+Assets/Assets/vines/vines.obj.meta
+Assets/Materials/Outside Buildings.mat
+Assets/Materials/Outside Buildings.mat.meta
+Assets/textures/NewMap textures/Outside.meta
+Assets/textures/NewMap textures/Outside/buildings_T_Outside_red_AlbedoTransparency.png
+Assets/textures/NewMap textures/Outside/buildings_T_Outside_red_AlbedoTransparency.png.meta
+Assets/textures/NewMap textures/Outside/buildings_T_Outside_red_MetallicSmoothness.png
+Assets/textures/NewMap textures/Outside/buildings_T_Outside_red_MetallicSmoothness.png.meta
+Assets/textures/NewMap textures/Outside/buildings_T_Outside_red_Normal.png
+Assets/textures/NewMap textures/Outside/buildings_T_Outside_red_Normal.png.meta

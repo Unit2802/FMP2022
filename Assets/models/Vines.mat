@@ -8,14 +8,13 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Vines
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 0355b53094dce2947a73f48ea73a9bcb, type: 3}
   m_ShaderKeywords: _ALPHATEST_ON _METALLICGLOSSMAP _NORMALMAP _PARALLAXMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2450
-  stringTagMap:
-    RenderType: TransparentCutout
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -58,7 +57,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 0.12
-    - _Cutoff: 1
+    - _Cutoff: 0.389
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
@@ -68,6 +67,10 @@ Material:
     - _Mode: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.005
+    - _ShakeBending: 0.003
+    - _ShakeDisplacement: 0.51
+    - _ShakeTime: 1
+    - _ShakeWindspeed: 0.042
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
