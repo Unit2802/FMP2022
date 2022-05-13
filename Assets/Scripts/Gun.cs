@@ -96,6 +96,7 @@ public class Gun : MonoBehaviour
            }
     }
 
+
     void Reload()
     {
         ammo = maxAmmo;
