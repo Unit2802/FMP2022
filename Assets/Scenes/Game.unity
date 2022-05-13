@@ -10480,9 +10480,9 @@ GameObject:
   - component: {fileID: 379868355}
   - component: {fileID: 379868354}
   - component: {fileID: 379868353}
-  - component: {fileID: 379868352}
   - component: {fileID: 379868351}
   - component: {fileID: 379868350}
+  - component: {fileID: 379868352}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -10525,15 +10525,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 379868349}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bd8ae4f7ac59df45b44875ee6f938d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 6da98097fa490df4a9a6cd5e145c6c6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countDown: 0
+  timerDuration: 180
+  countDown: 1
   firstMinute: {fileID: 1242855285}
-  SecondMinute: {fileID: 1600777159}
-  Seperator: {fileID: 2001561704}
+  secondMinute: {fileID: 1600777159}
+  separator: {fileID: 2001561704}
   firstSecond: {fileID: 445110551}
   secondSecond: {fileID: 948511248}
+  flashDuration: 1
 --- !u!114 &379868353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15541,7 +15543,7 @@ RectTransform:
   m_GameObject: {fileID: 533686516}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.8013839, y: 1.8013839, z: 1.8013839}
   m_Children:
   - {fileID: 911679871}
   - {fileID: 292111243}
@@ -15551,7 +15553,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -731, y: -470}
+  m_AnchoredPosition: {x: -585, y: -391}
   m_SizeDelta: {x: 316.5313, y: 35.799}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &533686518
