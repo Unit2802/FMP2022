@@ -4,7 +4,7 @@ using TMPro;
 public class Timer : MonoBehaviour
 {
     [SerializeField]
-    private float timerDuration = 3f * 60f;
+    private float timerDuration = 3f * 60f; //Duration of the timer in seconds
 
     [SerializeField]
     private bool countDown = true;
@@ -21,9 +21,14 @@ public class Timer : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI secondSecond;
 
+    //Use this for a single text object
+    //[SerializeField]
+    //private TextMeshProUGUI timerText;
+
     private float flashTimer;
     [SerializeField]
-    private float flashDuration = 1f;
+    private float flashDuration = 1f; //The full length of the flash
+
     private void Start()
     {
         ResetTimer();
@@ -83,59 +88,61 @@ public class Timer : MonoBehaviour
         firstSecond.text = currentTime[2].ToString();
         secondSecond.text = currentTime[3].ToString();
 
+        //Use this for a single text object
+        //timerText.text = currentTime.ToString();
+    }
 
-       void ErrorDisplay()
+    private void ErrorDisplay()
+    {
+        firstMinute.text = "8";
+        secondMinute.text = "8";
+        firstSecond.text = "8";
+        secondSecond.text = "8";
+
+
+        //Use this for a single text object
+        //timerText.text = "ERROR";
+    }
+
+    private void FlashTimer()
+    {
+        if (countDown && timer != 0)
         {
-            firstMinute.text = "8";
-            secondMinute.text = "8";
-            firstSecond.text = "8";
-            secondSecond.text = "8";
-
-
-            //Use this for a single text object
-            //timerText.text = "ERROR";
+            timer = 0;
+            UpdateTimerDisplay(timer);
         }
 
-         void FlashTimer()
+        if (!countDown && timer != timerDuration)
         {
-            if (countDown && timer != 0)
-            {
-                timer = 0;
-                UpdateTimerDisplay(timer);
-            }
-
-            if (!countDown && timer != timerDuration)
-            {
-                timer = timerDuration;
-                UpdateTimerDisplay(timer);
-            }
-
-            if (flashTimer <= 0)
-            {
-                flashTimer = flashDuration;
-            }
-            else if (flashTimer <= flashDuration / 2)
-            {
-                flashTimer -= Time.deltaTime;
-                SetTextDisplay(true);
-            }
-            else
-            {
-                flashTimer -= Time.deltaTime;
-                SetTextDisplay(false);
-            }
+            timer = timerDuration;
+            UpdateTimerDisplay(timer);
         }
 
-        void SetTextDisplay(bool enabled)
+        if (flashTimer <= 0)
         {
-            firstMinute.enabled = enabled;
-            secondMinute.enabled = enabled;
-            separator.enabled = enabled;
-            firstSecond.enabled = enabled;
-            secondSecond.enabled = enabled;
-
-            //Use this for a single text object
-            //timerText.enabled = enabled;
+            flashTimer = flashDuration;
         }
+        else if (flashTimer <= flashDuration / 2)
+        {
+            flashTimer -= Time.deltaTime;
+            SetTextDisplay(true);
+        }
+        else
+        {
+            flashTimer -= Time.deltaTime;
+            SetTextDisplay(false);
+        }
+    }
+
+    private void SetTextDisplay(bool enabled)
+    {
+        firstMinute.enabled = enabled;
+        secondMinute.enabled = enabled;
+        separator.enabled = enabled;
+        firstSecond.enabled = enabled;
+        secondSecond.enabled = enabled;
+
+        //Use this for a single text object
+        //timerText.enabled = enabled;
     }
 }
