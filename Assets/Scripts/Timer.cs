@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class countdownTimer : MonoBehaviour
+public class Timer : MonoBehaviour
 {
     [SerializeField]
     private float timerDuration = 3f * 60f; //Duration of the timer in seconds
@@ -146,6 +146,3 @@ public class countdownTimer : MonoBehaviour
         //timerText.enabled = enabled;
     }
 }
-
-
-
