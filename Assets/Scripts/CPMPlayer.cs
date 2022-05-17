@@ -79,7 +79,13 @@ public class CPMPlayer : MonoBehaviour
     private bool canDoubleJump;
     [Header("Test")]                                                                                                                                                                                                          public bool abilityActive;
 
-    bool hasDoubleJumped = false;                                                                                                                   
+    bool hasDoubleJumped = false;
+
+    [Header("Gun Stuff")]
+    [SerializeField] Item[] items;
+
+    int itemIndex;
+    int previousItemIndex = -1;
 
     private void Awake()
     {
@@ -100,7 +106,11 @@ public class CPMPlayer : MonoBehaviour
                 playerView = mainCamera.gameObject.transform;
         }
 
-        if (!PV.IsMine)
+        if (PV.IsMine)
+        {
+            EquipItem(0);
+        }
+        else
         {
             Destroy(GetComponentInChildren<Camera>().gameObject);
         }
@@ -192,6 +202,40 @@ public class CPMPlayer : MonoBehaviour
             transform.position.x,
             transform.position.y + playerViewYOffset,
             transform.position.z);
+
+        for (int i = 0; i < items.Length; i++)
+        {
+            if(Input.GetKeyDown((i + 1).ToString()))
+            {
+                EquipItem(i);
+                break;
+            }
+        }
+
+        if(Input.GetAxisRaw("Mouse ScrollWheel") > 0f)
+        {
+            if(itemIndex >= items.Length - 1)
+            {
+                EquipItem(0);
+            }
+            else
+            {
+                EquipItem(itemIndex + 1);
+            }
+            
+        }
+        else if(Input.GetAxisRaw("Mouse ScrollWheel") < 0f)
+        {
+            if(itemIndex <= 0)
+            {
+                EquipItem(items.Length - 1);
+            }
+            else
+            {
+                EquipItem(itemIndex - 1);
+
+            }
+        }
     }
 
     /*******************************************************************************************************\
@@ -395,6 +439,25 @@ public class CPMPlayer : MonoBehaviour
 
         playerVelocity.x += accelspeed * wishdir.x;
         playerVelocity.z += accelspeed * wishdir.z;
+    }
+
+    void EquipItem(int _index)
+    {
+        if(_index == previousItemIndex)
+        {
+            return;
+        }
+
+        itemIndex = _index;
+
+        items[itemIndex].itemGameObject.SetActive(true);
+
+        if(previousItemIndex != -1)
+        {
+            items[previousItemIndex].itemGameObject.SetActive(false);
+        }
+
+        previousItemIndex = itemIndex;
     }
 
     /*private void OnGUI()
