@@ -7,7 +7,7 @@ public class UroshNewGun : MonoBehaviour
 
     public GameObject round;
 
-    public Transform launchOrigin;
+    public GameObject launchOrigin;
 
     public float ammo = 10;
 
@@ -74,7 +74,7 @@ public class UroshNewGun : MonoBehaviour
 
         //  shots.Play();
 
-        GameObject projectile = Instantiate(round, launchOrigin.position, cam.rotation);
+        GameObject projectile = Instantiate(round, launchOrigin.transform.position, cam.rotation);
 
         Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
         // Calculate direction
@@ -84,7 +84,7 @@ public class UroshNewGun : MonoBehaviour
 
         if (Physics.Raycast(cam.position, cam.forward, out hit, 500f))
         {
-            forceDirection = (hit.point - launchOrigin.position).normalized;
+            forceDirection = (hit.point - launchOrigin.transform.position).normalized;
         }
 
         // Add force
