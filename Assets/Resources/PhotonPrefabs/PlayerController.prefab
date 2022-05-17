@@ -430,7 +430,6 @@ GameObject:
   - component: {fileID: 4237125992999357399}
   - component: {fileID: 1386924551268443542}
   - component: {fileID: 8188289566402396953}
-  - component: {fileID: -5080199141058368393}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Player
@@ -656,7 +655,9 @@ MonoBehaviour:
   playerVelocity: {x: 0, y: 0, z: 0}
   wishJump: 0
   abilityActive: 1
-  items: []
+  items:
+  - {fileID: 5129720600063002725}
+  - {fileID: 3168046360578216013}
 --- !u!143 &-4171798805208577145
 CharacterController:
   m_ObjectHideFlags: 0
@@ -735,31 +736,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   deathScreen: {fileID: 0}
---- !u!114 &-5080199141058368393
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5321976912562714375}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a52f72084841ae6478e25a3e9b036b31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  round: {fileID: 4803877140267260321, guid: 2498532fefd6a49488dc95352e53a59a, type: 3}
-  launchOrigin: {fileID: 0}
-  ammo: 10
-  maxAmmo: 0
-  bulletTravelSpeed: 0
-  fireRate: 1
-  nextFire: 0
-  gunShot: {fileID: 0}
-  shots: {fileID: 0}
-  isWeaponOne: 0
-  isWeaponTwo: 0
-  isWeaponThree: 0
-  isReloading: 0
 --- !u!1 &6939612400636503945
 GameObject:
   m_ObjectHideFlags: 0
