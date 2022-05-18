@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
+using Photon.Realtime;
 
 // Contains the command the user wishes upon the character
 struct Cmd
@@ -11,7 +13,7 @@ struct Cmd
     public float upMove;
 }
 
-public class CPMPlayer : MonoBehaviour
+public class CPMPlayer : MonoBehaviourPunCallbacks
 {
     [Header("Camera stuff")]
     public Transform playerView;     // Camera
@@ -126,7 +128,7 @@ public class CPMPlayer : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Double Jump is: " + canDoubleJump);
+        
 
         if (!PV.IsMine)
             return;
@@ -235,6 +237,11 @@ public class CPMPlayer : MonoBehaviour
                 EquipItem(itemIndex - 1);
 
             }
+        }
+
+        if(Input.GetMouseButtonDown(0))
+        {
+            items[itemIndex].Use();
         }
     }
 
@@ -458,6 +465,21 @@ public class CPMPlayer : MonoBehaviour
         }
 
         previousItemIndex = itemIndex;
+
+        if(PV.IsMine)
+        {
+            Hashtable hash = new Hashtable();
+            hash.Add("itemIndex", itemIndex);
+            PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
+        }
+    }
+
+    public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
+    {
+       if(!PV.IsMine && targetPlayer == PV.Owner)
+        {
+            EquipItem((int)changedProps["itemIndex"]);
+        }
     }
 
     /*private void OnGUI()
