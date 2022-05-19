@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: RPG
   m_EditorClassIdentifier: 
   itemName: RPG
+  damage: 50

@@ -13,7 +13,7 @@ struct Cmd
     public float upMove;
 }
 
-public class CPMPlayer : MonoBehaviourPunCallbacks
+public class CPMPlayer : MonoBehaviourPunCallbacks, IDamageable
 {
     [Header("Camera stuff")]
     public Transform playerView;     // Camera
@@ -506,6 +506,20 @@ public class CPMPlayer : MonoBehaviourPunCallbacks
         {
             jumpSpeed = setJumpSpeed;
         }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        PV.RPC("ROC_TakeDamage", RpcTarget.All, damage);
+    }
+
+    [PunRPC]
+    void RPC_TakeDamage(float damage)
+    {
+        if (!PV.IsMine)
+            return;
+
+        Debug.Log("Took damage:" + damage);
     }
 }
         
