@@ -96,7 +96,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7690908879087231450}
-  - component: {fileID: 1939799023601353190}
   m_Layer: 0
   m_Name: RPGObject
   m_TagString: Untagged
@@ -119,20 +118,6 @@ Transform:
   m_Father: {fileID: 1414566931459357418}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1939799023601353190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1896902349934081948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c97a96819f1c9474db1458bcf55e5168, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemInfo: {fileID: 11400000, guid: 26efae81f3fb2c149b01ae9ef108efa8, type: 2}
-  itemGameObject: {fileID: 4171327223438471643}
 --- !u!1 &2011894158335605900
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,6 +376,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1414566931459357418}
+  - component: {fileID: 4913427599327670288}
   m_Layer: 0
   m_Name: RPG
   m_TagString: Untagged
@@ -413,6 +399,20 @@ Transform:
   m_Father: {fileID: 8784675606533834548}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4913427599327670288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4171327223438471643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c97a96819f1c9474db1458bcf55e5168, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemInfo: {fileID: 11400000, guid: 26efae81f3fb2c149b01ae9ef108efa8, type: 2}
+  itemGameObject: {fileID: 4171327223438471643}
 --- !u!1 &5321976912562714375
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,7 +659,7 @@ MonoBehaviour:
   abilityActive: 1
   items:
   - {fileID: 8683721466201816965}
-  - {fileID: 1939799023601353190}
+  - {fileID: 4913427599327670288}
 --- !u!143 &-4171798805208577145
 CharacterController:
   m_ObjectHideFlags: 0
@@ -691,7 +691,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 5690105837863867710}
-  attackPoint: {fileID: 0}
+  attackPoint: {fileID: 2922993229324954368}
   objectToThrow: {fileID: 6194406720561620481, guid: 139a2967adc8f6848a856d390b2597d3,
     type: 3}
   totalThrows: 2
