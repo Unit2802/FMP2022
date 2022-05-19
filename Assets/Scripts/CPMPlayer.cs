@@ -510,14 +510,13 @@ public class CPMPlayer : MonoBehaviourPunCallbacks, IDamageable
 
     public void TakeDamage(float damage)
     {
-        PV.RPC("ROC_TakeDamage", RpcTarget.All, damage);
+        PV.RPC("RPC_TakeDamage", RpcTarget.All, damage);
     }
 
     [PunRPC]
     void RPC_TakeDamage(float damage)
     {
-        if (!PV.IsMine)
-            return;
+        
 
         Debug.Log("Took damage:" + damage);
     }
