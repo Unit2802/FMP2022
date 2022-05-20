@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
+using Photon.Realtime;
 
 // Contains the command the user wishes upon the character
 struct Cmd
@@ -11,7 +13,7 @@ struct Cmd
     public float upMove;
 }
 
-public class CPMPlayer : MonoBehaviour
+public class CPMPlayer : MonoBehaviourPunCallbacks, IDamageable
 {
     [Header("Camera stuff")]
     public Transform playerView;     // Camera
@@ -79,13 +81,26 @@ public class CPMPlayer : MonoBehaviour
     private bool canDoubleJump;
     [Header("Test")]                                                                                                                                                                                                          public bool abilityActive;
 
-    bool hasDoubleJumped = false;                                                                                                                   
+    bool hasDoubleJumped = false;
+
+    [Header("Gun Stuff")]
+    [SerializeField] Item[] items;
+
+    const float maxHealth = 100f;
+    float currentHealth = maxHealth;
+
+    int itemIndex;
+    int previousItemIndex = -1;
+
+    PlayerManager playerManager;
 
     private void Awake()
     {
         PV = GetComponent<PhotonView>();
 
         setJumpSpeed = jumpSpeed;
+
+        playerManager = PhotonView.Find((int)PV.InstantiationData[0]).GetComponent<PlayerManager>();
     }
     private void Start()
     {
@@ -100,7 +115,11 @@ public class CPMPlayer : MonoBehaviour
                 playerView = mainCamera.gameObject.transform;
         }
 
-        if (!PV.IsMine)
+        if (PV.IsMine)
+        {
+            EquipItem(0);
+        }
+        else
         {
             Destroy(GetComponentInChildren<Camera>().gameObject);
         }
@@ -116,7 +135,7 @@ public class CPMPlayer : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Double Jump is: " + canDoubleJump);
+        
 
         if (!PV.IsMine)
             return;
@@ -192,6 +211,45 @@ public class CPMPlayer : MonoBehaviour
             transform.position.x,
             transform.position.y + playerViewYOffset,
             transform.position.z);
+
+        for (int i = 0; i < items.Length; i++)
+        {
+            if(Input.GetKeyDown((i + 1).ToString()))
+            {
+                EquipItem(i);
+                break;
+            }
+        }
+
+        if(Input.GetAxisRaw("Mouse ScrollWheel") > 0f)
+        {
+            if(itemIndex >= items.Length - 1)
+            {
+                EquipItem(0);
+            }
+            else
+            {
+                EquipItem(itemIndex + 1);
+            }
+            
+        }
+        else if(Input.GetAxisRaw("Mouse ScrollWheel") < 0f)
+        {
+            if(itemIndex <= 0)
+            {
+                EquipItem(items.Length - 1);
+            }
+            else
+            {
+                EquipItem(itemIndex - 1);
+
+            }
+        }
+
+        if(Input.GetMouseButtonDown(0))
+        {
+            items[itemIndex].Use();
+        }
     }
 
     /*******************************************************************************************************\
@@ -397,6 +455,40 @@ public class CPMPlayer : MonoBehaviour
         playerVelocity.z += accelspeed * wishdir.z;
     }
 
+    void EquipItem(int _index)
+    {
+        if(_index == previousItemIndex)
+        {
+            return;
+        }
+
+        itemIndex = _index;
+
+        items[itemIndex].itemGameObject.SetActive(true);
+
+        if(previousItemIndex != -1)
+        {
+            items[previousItemIndex].itemGameObject.SetActive(false);
+        }
+
+        previousItemIndex = itemIndex;
+
+        if(PV.IsMine)
+        {
+            Hashtable hash = new Hashtable();
+            hash.Add("itemIndex", itemIndex);
+            PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
+        }
+    }
+
+    public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
+    {
+       if(!PV.IsMine && targetPlayer == PV.Owner)
+        {
+            EquipItem((int)changedProps["itemIndex"]);
+        }
+    }
+
     /*private void OnGUI()
     {
         GUI.Label(new Rect(0, 0, 400, 100), "FPS: " + fps, style);
@@ -421,6 +513,29 @@ public class CPMPlayer : MonoBehaviour
         {
             jumpSpeed = setJumpSpeed;
         }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        PV.RPC("RPC_TakeDamage", RpcTarget.All, damage);
+    }
+
+    [PunRPC]
+    void RPC_TakeDamage(float damage)
+    {
+
+        currentHealth -= damage;
+
+        if(currentHealth <= 0)
+        {
+            Die();
+        }
+        
+    }
+
+    void Die()
+    {
+        playerManager.Die();
     }
 }
         
