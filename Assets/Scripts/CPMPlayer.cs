@@ -86,14 +86,21 @@ public class CPMPlayer : MonoBehaviourPunCallbacks, IDamageable
     [Header("Gun Stuff")]
     [SerializeField] Item[] items;
 
+    const float maxHealth = 100f;
+    float currentHealth = maxHealth;
+
     int itemIndex;
     int previousItemIndex = -1;
+
+    PlayerManager playerManager;
 
     private void Awake()
     {
         PV = GetComponent<PhotonView>();
 
         setJumpSpeed = jumpSpeed;
+
+        playerManager = PhotonView.Find((int)PV.InstantiationData[0]).GetComponent<PlayerManager>();
     }
     private void Start()
     {
@@ -516,9 +523,19 @@ public class CPMPlayer : MonoBehaviourPunCallbacks, IDamageable
     [PunRPC]
     void RPC_TakeDamage(float damage)
     {
-        
 
-        Debug.Log("Took damage:" + damage);
+        currentHealth -= damage;
+
+        if(currentHealth <= 0)
+        {
+            Die();
+        }
+        
+    }
+
+    void Die()
+    {
+        playerManager.Die();
     }
 }
         
