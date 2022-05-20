@@ -2,16 +2,16 @@ using UnityEngine;
 
 public class Round : MonoBehaviour
 {
-    public float damage;
+    public int damage = 50;
 
     void OnCollisionEnter(Collision other)
     {
-        Enemies target = other.gameObject.GetComponent<Enemies>();
+        HealthAndRespawn target = other.gameObject.GetComponent<HealthAndRespawn>();
         // Only attempts to inflict damage if the other game object has the 'Enemies' component
        
         if (target != null)
         {
-            target.Hit(damage);
+            target.TakeDamage(damage);
             Debug.Log("Hit Player");
         }
 
