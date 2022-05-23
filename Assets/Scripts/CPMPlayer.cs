@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
+using Photon.Realtime;
 
 // Contains the command the user wishes upon the character
 struct Cmd
@@ -10,20 +13,24 @@ struct Cmd
     public float upMove;
 }
 
-public class CPMPlayer : MonoBehaviour
+public class CPMPlayer : MonoBehaviourPunCallbacks, IDamageable
 {
+    [Header("Camera stuff")]
     public Transform playerView;     // Camera
     public float playerViewYOffset = 0.6f; // The height at which the camera is bound to
-    public float xMouseSensitivity = 30.0f;
-    public float yMouseSensitivity = 30.0f;
+    /* public float xSense = 30.0f;
+     public float ySense = 30.0f; */
     //
     /*Frame occuring factors*/
+    [Header("Frame occuring factors")]
     public float gravity = 20.0f;
 
     public float friction = 6; //Ground friction
 
     /* Movement stuff */
-    public float moveSpeed = 7.0f;                // Ground move speed
+    [Header("Movement")]
+    public float moveSpeed = 7.0f;
+    public float currentMoveSpeed;
     public float runAcceleration = 14.0f;         // Ground accel
     public float runDeacceleration = 10.0f;       // Deacceleration that occurs when running on the ground
     public float airAcceleration = 2.0f;          // Air accel
@@ -31,8 +38,14 @@ public class CPMPlayer : MonoBehaviour
     public float airControl = 0.3f;               // How precise air control is
     public float sideStrafeAcceleration = 50.0f;  // How fast acceleration occurs to get up to sideStrafeSpeed when
     public float sideStrafeSpeed = 1.0f;          // What the max speed to generate when side strafing
-    public float jumpSpeed = 8.0f;                // The speed at which the character's up axis gains when hitting jump
+    public float jumpSpeed = 8.0f;
+    public float doubleJS = 16.0f;
+    public float currentJumpSpeed;          // The speed at which the character's up axis gains when hitting jump
     public bool holdJumpToBhop = false;           // When enabled allows player to just hold jump button to keep on bhopping perfectly. Beware: smells like casual.
+
+    
+
+    [SerializeField] private float setJumpSpeed;
 
     /*print() style */
     public GUIStyle style;
@@ -51,11 +64,11 @@ public class CPMPlayer : MonoBehaviour
     private float rotY = 0.0f;
 
     private Vector3 moveDirectionNorm = Vector3.zero;
-    private Vector3 playerVelocity = Vector3.zero;
+    public Vector3 playerVelocity = Vector3.zero;
     private float playerTopVelocity = 0.0f;
 
     // Q3: players can queue the next jump just before he hits the ground
-    private bool wishJump = false;
+    public bool wishJump = false;
 
     // Used to display real time fricton values
     private float playerFriction = 0.0f;
@@ -63,6 +76,32 @@ public class CPMPlayer : MonoBehaviour
     // Player commands, stores wish commands that the player asks for (Forward, back, jump, etc)
     private Cmd _cmd;
 
+    PhotonView PV;
+
+    private bool canDoubleJump;
+    [Header("Test")]                                                                                                                                                                                                          public bool abilityActive;
+
+    bool hasDoubleJumped = false;
+
+    [Header("Gun Stuff")]
+    [SerializeField] Item[] items;
+
+    const float maxHealth = 100f;
+    float currentHealth = maxHealth;
+
+    int itemIndex;
+    int previousItemIndex = -1;
+
+    PlayerManager playerManager;
+
+    private void Awake()
+    {
+        PV = GetComponent<PhotonView>();
+
+        setJumpSpeed = jumpSpeed;
+
+        playerManager = PhotonView.Find((int)PV.InstantiationData[0]).GetComponent<PlayerManager>();
+    }
     private void Start()
     {
         // Hide the cursor
@@ -76,6 +115,15 @@ public class CPMPlayer : MonoBehaviour
                 playerView = mainCamera.gameObject.transform;
         }
 
+        if (PV.IsMine)
+        {
+            EquipItem(0);
+        }
+        else
+        {
+            Destroy(GetComponentInChildren<Camera>().gameObject);
+        }
+
         // Put the camera inside the capsule collider
         playerView.position = new Vector3(
             transform.position.x,
@@ -87,6 +135,11 @@ public class CPMPlayer : MonoBehaviour
 
     private void Update()
     {
+        
+
+        if (!PV.IsMine)
+            return;
+
         // Do FPS calculation
         frameCount++;
         dt += Time.deltaTime;
@@ -104,8 +157,8 @@ public class CPMPlayer : MonoBehaviour
         }
 
         /* Camera rotation stuff, mouse controls this shit */
-        rotX -= Input.GetAxisRaw("Mouse Y") * xMouseSensitivity * 0.02f;
-        rotY += Input.GetAxisRaw("Mouse X") * yMouseSensitivity * 0.02f;
+        rotX -= Input.GetAxisRaw("Mouse Y") * RoomManager.Instance.ySense * 0.02f;
+        rotY += Input.GetAxisRaw("Mouse X") * RoomManager.Instance.xSense * 0.02f;
 
         // Clamp the X rotation
         if (rotX < -90)
@@ -121,9 +174,27 @@ public class CPMPlayer : MonoBehaviour
         /* Movement, here's the important part */
         QueueJump();
         if (_controller.isGrounded)
+        {
             GroundMove();
+            hasDoubleJumped = false;
+        }
         else if (!_controller.isGrounded)
+        {
             AirMove();
+            if(!hasDoubleJumped && Input.GetButton("Jump"))
+            {
+                if(wishJump)
+                {
+                    playerVelocity.y = doubleJS;
+                    hasDoubleJumped = true;
+                    wishJump = false;
+
+                }
+            }
+
+        }
+
+
 
         // Move the controller
         _controller.Move(playerVelocity * Time.deltaTime);
@@ -140,11 +211,50 @@ public class CPMPlayer : MonoBehaviour
             transform.position.x,
             transform.position.y + playerViewYOffset,
             transform.position.z);
+
+        for (int i = 0; i < items.Length; i++)
+        {
+            if(Input.GetKeyDown((i + 1).ToString()))
+            {
+                EquipItem(i);
+                break;
+            }
+        }
+
+        if(Input.GetAxisRaw("Mouse ScrollWheel") > 0f)
+        {
+            if(itemIndex >= items.Length - 1)
+            {
+                EquipItem(0);
+            }
+            else
+            {
+                EquipItem(itemIndex + 1);
+            }
+            
+        }
+        else if(Input.GetAxisRaw("Mouse ScrollWheel") < 0f)
+        {
+            if(itemIndex <= 0)
+            {
+                EquipItem(items.Length - 1);
+            }
+            else
+            {
+                EquipItem(itemIndex - 1);
+
+            }
+        }
+
+        if(Input.GetMouseButtonDown(0))
+        {
+            items[itemIndex].Use();
+        }
     }
 
     /*******************************************************************************************************\
    |* MOVEMENT
-   \*******************************************************************************************************/
+    \*******************************************************************************************************/
 
     /**
      * Sets the movement direction based on player input
@@ -188,6 +298,8 @@ public class CPMPlayer : MonoBehaviour
 
         float wishspeed = wishdir.magnitude;
         wishspeed *= moveSpeed;
+        currentMoveSpeed = moveSpeed;
+        currentJumpSpeed = jumpSpeed;
 
         wishdir.Normalize();
         moveDirectionNorm = wishdir;
@@ -259,8 +371,9 @@ public class CPMPlayer : MonoBehaviour
     /**
      * Called every frame when the engine detects that the player is on the ground
      */
-    private void GroundMove()
+    public void GroundMove()
     {
+
         Vector3 wishdir;
 
         // Do not apply friction if the player is queueing up the next jump
@@ -342,7 +455,41 @@ public class CPMPlayer : MonoBehaviour
         playerVelocity.z += accelspeed * wishdir.z;
     }
 
-    private void OnGUI()
+    void EquipItem(int _index)
+    {
+        if(_index == previousItemIndex)
+        {
+            return;
+        }
+
+        itemIndex = _index;
+
+        items[itemIndex].itemGameObject.SetActive(true);
+
+        if(previousItemIndex != -1)
+        {
+            items[previousItemIndex].itemGameObject.SetActive(false);
+        }
+
+        previousItemIndex = itemIndex;
+
+        if(PV.IsMine)
+        {
+            Hashtable hash = new Hashtable();
+            hash.Add("itemIndex", itemIndex);
+            PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
+        }
+    }
+
+    public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
+    {
+       if(!PV.IsMine && targetPlayer == PV.Owner)
+        {
+            EquipItem((int)changedProps["itemIndex"]);
+        }
+    }
+
+    /*private void OnGUI()
     {
         GUI.Label(new Rect(0, 0, 400, 100), "FPS: " + fps, style);
         var ups = _controller.velocity;
@@ -350,4 +497,62 @@ public class CPMPlayer : MonoBehaviour
         GUI.Label(new Rect(0, 15, 400, 100), "Speed: " + Mathf.Round(ups.magnitude * 100) / 100 + "ups", style);
         GUI.Label(new Rect(0, 30, 400, 100), "Top Speed: " + Mathf.Round(playerTopVelocity * 100) / 100 + "ups", style);
     }
+    */
+
+    private void OnTriggerEnter(Collider other)
+    { 
+        if (other.gameObject.CompareTag("JumpPad"))
+        {
+            jumpSpeed = 15;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("JumpPad"))
+        {
+            jumpSpeed = setJumpSpeed;
+        }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        PV.RPC("RPC_TakeDamage", RpcTarget.All, damage);
+    }
+
+    [PunRPC]
+    void RPC_TakeDamage(float damage)
+    {
+        if (!PV.IsMine)
+            return;
+
+        currentHealth -= damage;
+
+        if(currentHealth <= 0)
+        {
+            Die();
+        }
+        
+    }
+
+    void Die()
+    {
+        playerManager.Die();
+    }
 }
+        
+      
+        
+        
+        
+        
+        
+        /* case "JumpPad":
+                    jumpSpeed = 25f;
+            break;
+                case "Ground":
+                    jumpSpeed = currentJumpSpeed;
+            moveSpeed = currentMoveSpeed;
+            break;
+
+        }*/
