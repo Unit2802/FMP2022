@@ -523,6 +523,8 @@ public class CPMPlayer : MonoBehaviourPunCallbacks, IDamageable
     [PunRPC]
     void RPC_TakeDamage(float damage)
     {
+        if (!PV.IsMine)
+            return;
 
         currentHealth -= damage;
 
