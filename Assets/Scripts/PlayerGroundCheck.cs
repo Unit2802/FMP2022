@@ -8,11 +8,12 @@ public class PlayerGroundCheck : MonoBehaviour
     [Range(100, 10000)]
     public float bounceheight;
 
+    public Animator anim;
 
-
+    public bool isOnGround = true;
     private void Awake()
     {
-        
+        anim = GetComponent<Animator>();
 
         playerController = GetComponentInParent<PlayerController>();
 
@@ -23,7 +24,11 @@ public class PlayerGroundCheck : MonoBehaviour
         if (other.gameObject == playerController.gameObject)
             return;
 
+        isOnGround = true;
+
         playerController.SetGroundedState(true);
+
+        bool isGrounded = isOnGround;
     }
 
     private void OnTriggerExit(Collider other)
@@ -32,6 +37,9 @@ public class PlayerGroundCheck : MonoBehaviour
             return;
 
         playerController.SetGroundedState(false);
+
+        isOnGround = false;
+        
     }
 
     private void OnTriggerStay(Collider other)

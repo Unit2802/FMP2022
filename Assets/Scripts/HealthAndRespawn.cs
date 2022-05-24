@@ -11,6 +11,13 @@ public class HealthAndRespawn : MonoBehaviourPunCallbacks, IPunObservable
 
     public Transform spawnPoint;
 
+    public AudioSource damage25;
+
+    public AudioSource damage50;
+
+    public AudioSource extraDamage;
+
+    public AudioSource killPlayer;
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
@@ -27,6 +34,26 @@ public class HealthAndRespawn : MonoBehaviourPunCallbacks, IPunObservable
         public void TakeDamage(int damage)
     {
         health -= damage;
+
+        if(damage <= 25)
+        {
+            damage25.Play();
+        }
+
+        if (damage <= 50 && damage > 25)
+        {
+            damage50.Play();
+        }
+
+        if(damage <= 100 && damage > 50)
+        {
+            extraDamage.Play();
+        }
+
+        if(health <= 0)
+        {
+            killPlayer.Play();
+        }
     }
 
     IEnumerator Respawn()

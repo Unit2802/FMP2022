@@ -43,8 +43,8 @@ public class CPMPlayer : MonoBehaviourPunCallbacks, IDamageable
     public float currentJumpSpeed;          // The speed at which the character's up axis gains when hitting jump
     public bool holdJumpToBhop = false;           // When enabled allows player to just hold jump button to keep on bhopping perfectly. Beware: smells like casual.
 
+    public Animator Anim;
     
-
     [SerializeField] private float setJumpSpeed;
 
     /*print() style */
@@ -104,6 +104,8 @@ public class CPMPlayer : MonoBehaviourPunCallbacks, IDamageable
     }
     private void Start()
     {
+        Anim = GetComponent<Animator>();
+
         // Hide the cursor
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -135,7 +137,7 @@ public class CPMPlayer : MonoBehaviourPunCallbacks, IDamageable
 
     private void Update()
     {
-        
+        float Speed = currentMoveSpeed;
 
         if (!PV.IsMine)
             return;
@@ -270,6 +272,8 @@ public class CPMPlayer : MonoBehaviourPunCallbacks, IDamageable
      */
     private void QueueJump()
     {
+       
+
         if (holdJumpToBhop)
         {
             wishJump = Input.GetButton("Jump");
