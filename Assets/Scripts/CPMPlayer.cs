@@ -94,6 +94,20 @@ public class CPMPlayer : MonoBehaviourPunCallbacks, IDamageable
 
     PlayerManager playerManager;
 
+
+    [Header("Footstep Parameters")]
+    [SerializeField] private float baseStepSpeed = 0.5f;
+    [SerializeField] private float crouchStepMultiplayer = 1.5f;
+    [SerializeField] private float SprintStepMultiplier = 0.6f;
+    [SerializeField] private AudioSource footstepAudioSource = default;
+    [SerializeField] private AudioClip[] woodClips = default;
+    [SerializeField] private AudioClip[] metalClips = default;
+    [SerializeField] private AudioClip[] grassClips = default;
+    private float footstepTimer = 0;
+
+
+
+
     private void Awake()
     {
         PV = GetComponent<PhotonView>();
@@ -527,6 +541,8 @@ public class CPMPlayer : MonoBehaviourPunCallbacks, IDamageable
     [PunRPC]
     void RPC_TakeDamage(float damage)
     {
+        if (!PV.IsMine)
+            return;
 
         currentHealth -= damage;
 
