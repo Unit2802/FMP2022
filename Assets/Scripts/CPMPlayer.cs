@@ -11,8 +11,6 @@ struct Cmd
     public float forwardMove;
     public float rightMove;
     public float upMove;
-
-  
 }
 
 public class CPMPlayer : MonoBehaviourPunCallbacks, IDamageable
@@ -28,10 +26,6 @@ public class CPMPlayer : MonoBehaviourPunCallbacks, IDamageable
     public float gravity = 20.0f;
 
     public float friction = 6; //Ground friction
-
-
-    [SerializeField]
-    private bool useFootsteps = true;
 
     /* Movement stuff */
     [Header("Movement")]
@@ -99,6 +93,7 @@ public class CPMPlayer : MonoBehaviourPunCallbacks, IDamageable
     int previousItemIndex = -1;
 
     PlayerManager playerManager;
+<<<<<<< HEAD
 
     [Header("Footstep Parameters")]
     [SerializeField] private float baseStepSpeed = 0.5f;
@@ -111,6 +106,8 @@ public class CPMPlayer : MonoBehaviourPunCallbacks, IDamageable
     private float footstepTimer = 0;
 
 
+=======
+>>>>>>> parent of c749e80 (Merge branch 'main' of https://github.com/Unit2802/FMP2022)
 
     private void Awake()
     {
