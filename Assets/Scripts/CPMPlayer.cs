@@ -11,6 +11,8 @@ struct Cmd
     public float forwardMove;
     public float rightMove;
     public float upMove;
+
+  
 }
 
 public class CPMPlayer : MonoBehaviourPunCallbacks, IDamageable
@@ -26,6 +28,10 @@ public class CPMPlayer : MonoBehaviourPunCallbacks, IDamageable
     public float gravity = 20.0f;
 
     public float friction = 6; //Ground friction
+
+
+    [SerializeField]
+    private bool useFootsteps = true;
 
     /* Movement stuff */
     [Header("Movement")]
@@ -92,7 +98,20 @@ public class CPMPlayer : MonoBehaviourPunCallbacks, IDamageable
     int itemIndex;
     int previousItemIndex = -1;
 
+<<<<<<< Updated upstream
     PlayerManager playerManager;
+=======
+    [Header("Footstep Parameters")]
+    [SerializeField] private float baseStepSpeed = 0.5f;
+    [SerializeField] private float crouchStepMultiplayer = 1.5f;
+    [SerializeField] private float SprintStepMultiplier = 0.6f;
+    [SerializeField] private AudioSource footstepAudioSource = default;
+    [SerializeField] private AudioClip[] woodClips = default;
+    [SerializeField] private AudioClip[] metalClips = default;
+    [SerializeField] private AudioClip[] grassClips = default;
+    private float footstepTimer = 0;
+
+>>>>>>> Stashed changes
 
     private void Awake()
     {
