@@ -98,9 +98,8 @@ public class CPMPlayer : MonoBehaviourPunCallbacks, IDamageable
     int itemIndex;
     int previousItemIndex = -1;
 
-<<<<<<< Updated upstream
     PlayerManager playerManager;
-=======
+
     [Header("Footstep Parameters")]
     [SerializeField] private float baseStepSpeed = 0.5f;
     [SerializeField] private float crouchStepMultiplayer = 1.5f;
@@ -111,7 +110,7 @@ public class CPMPlayer : MonoBehaviourPunCallbacks, IDamageable
     [SerializeField] private AudioClip[] grassClips = default;
     private float footstepTimer = 0;
 
->>>>>>> Stashed changes
+
 
     private void Awake()
     {
