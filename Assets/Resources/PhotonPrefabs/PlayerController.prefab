@@ -661,6 +661,13 @@ MonoBehaviour:
   items:
   - {fileID: 8683721466201816965}
   - {fileID: 4913427599327670288}
+  baseStepSpeed: 0.5
+  crouchStepMultiplayer: 1.5
+  SprintStepMultiplier: 0.6
+  footstepAudioSource: {fileID: 0}
+  woodClips: []
+  metalClips: []
+  grassClips: []
 --- !u!143 &-4171798805208577145
 CharacterController:
   m_ObjectHideFlags: 0
