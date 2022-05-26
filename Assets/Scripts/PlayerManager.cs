@@ -25,7 +25,6 @@ public class PlayerManager : MonoBehaviour
         
             if (PV.IsMine)
             {
-                CreateController();
                 PV.RPC("RPC_GetTeam", RpcTarget.MasterClient);
             }
         
@@ -45,8 +44,33 @@ public class PlayerManager : MonoBehaviour
             controller = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerController"), spawnpointTeamTwo.position, spawnpointTeamTwo.rotation, 0, new object[] { PV.ViewID });
         }
     }
-        
+
     
+
+    private void Update()
+    {
+        if (controller == null && myTeam != 0)
+        {
+            if (myTeam == 1)
+            {
+                Transform spawnpoint = SpawnManager.Instance.GetSpawnpoint();
+                if (PV.IsMine)
+                {
+                    controller = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerController"), spawnpoint.position, spawnpoint.rotation, 0, new object[] { PV.ViewID });
+                }
+            }
+            else
+            {
+                Transform spawnpointTeamTwo = SpawnManager.Instance.GetSpawnpointTeamTwo();
+                if (PV.IsMine)
+                {
+                    controller = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerController"), spawnpointTeamTwo.position, spawnpointTeamTwo.rotation, 0, new object[] { PV.ViewID });
+                }
+            }
+        }
+    }
+
+
 
     public void Die()
     {
