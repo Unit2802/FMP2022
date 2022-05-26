@@ -8,8 +8,8 @@ public class SpawnManager : MonoBehaviour
 
     public int nextPlayersTeam;
 
-    public Spawnpoint[] spawnpointsTeamOne;
-    public Spawnpoint[] spawnpointsTeamTwo;
+    public Spawnpoint[] spawnpointsTeamOne, spawnpointsTeamTwo;
+    
 
     private void Awake()
     {

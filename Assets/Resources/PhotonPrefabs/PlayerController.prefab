@@ -431,8 +431,6 @@ GameObject:
   - component: {fileID: -8343601135603798507}
   - component: {fileID: -4171798805208577145}
   - component: {fileID: 4237125992999357399}
-  - component: {fileID: 1386924551268443542}
-  - component: {fileID: 8188289566402396953}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Player
@@ -707,45 +705,6 @@ MonoBehaviour:
   throwForce: 25
   throwUpwardForce: 4
   throwKey: 102
---- !u!114 &1386924551268443542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5321976912562714375}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a0cb0f396ec6164db040f2c8e7ff0d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  round: {fileID: 4803877140267260321, guid: 2498532fefd6a49488dc95352e53a59a, type: 3}
-  launchOrigin: {fileID: 8894242308459871615}
-  ammo: 10
-  maxAmmo: 10
-  bulletTravelSpeed: 10000
-  fireRate: 1
-  nextFire: 0
-  gunShot: {fileID: 2221096203165045192}
-  shots: {fileID: 0}
-  isWeaponOne: 0
-  isWeaponTwo: 0
-  isWeaponThree: 0
-  isReloading: 0
---- !u!114 &8188289566402396953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5321976912562714375}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dc30aaa948499949931abf20ae2caa2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
-  deathScreen: {fileID: 0}
 --- !u!1 &8894242308459871615
 GameObject:
   m_ObjectHideFlags: 0
