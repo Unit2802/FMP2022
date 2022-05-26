@@ -11,6 +11,8 @@ public class PlayerManager : MonoBehaviour
 
     GameObject controller;
 
+    public int myTeam;
+
 
     void Awake()
     {
@@ -19,22 +21,51 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(PV.IsMine)
-        {
-            CreateController();
-        }
+        
+        
+            if (PV.IsMine)
+            {
+                CreateController();
+                PV.RPC("RPC_GetTeam", RpcTarget.MasterClient);
+            }
+        
     }
 
     // Update is called once per frame
     void CreateController()
     {
         Transform spawnpoint = SpawnManager.Instance.GetSpawnpoint();
-        controller = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerController"), spawnpoint.position, spawnpoint.rotation, 0, new object[] { PV.ViewID } );
+        Transform spawnpointTeamTwo = SpawnManager.Instance.GetSpawnpointTeamTwo();
+        if (myTeam == 1)
+        {
+            controller = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerController"), spawnpoint.position, spawnpoint.rotation, 0, new object[] { PV.ViewID });
+        }
+        else
+        {
+            controller = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerController"), spawnpointTeamTwo.position, spawnpointTeamTwo.rotation, 0, new object[] { PV.ViewID });
+        }
     }
+        
+    
 
     public void Die()
     {
         PhotonNetwork.Destroy(controller);
         CreateController();
+    }
+
+    [PunRPC]
+    void RPC_GetTeam()
+    {
+        myTeam = SpawnManager.Instance.nextPlayersTeam;
+        SpawnManager.Instance.UpdateTeam();
+        PV.RPC("RPC_SentTeam", RpcTarget.OthersBuffered, myTeam);
+
+    }
+
+    [PunRPC]
+    void RPC_SentTeam(int whichTeam)
+    {
+        myTeam = whichTeam;
     }
 }
