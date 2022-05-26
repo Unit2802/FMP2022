@@ -7,12 +7,13 @@ public class PlayerGroundCheck : MonoBehaviour
     PlayerController playerController;
     [Range(100, 10000)]
     public float bounceheight;
+    public static PlayerGroundCheck Instance;
 
 
 
     private void Awake()
     {
-        
+        Instance = this;
 
         playerController = GetComponentInParent<PlayerController>();
 
