@@ -421,12 +421,12 @@ public class CPMPlayer : MonoBehaviourPunCallbacks, IDamageable
             wishJump = false;
         }
     }
-
+    /*
     private void Handle_Footsteps()
     {
         if (!PlayerGroundCheck.SetGroundedState(true)) return;
     }
-
+    */
     /**
      * Applies friction to the player, called in both the air and on the ground
      */
