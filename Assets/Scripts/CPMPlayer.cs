@@ -92,17 +92,13 @@ public class CPMPlayer : MonoBehaviourPunCallbacks, IDamageable
     int itemIndex;
     int previousItemIndex = -1;
 
-<<<<<<< Updated upstream
     PlayerManager playerManager;
 
 
-=======
     private bool isGrounded = true;
 
 
-    PlayerManager playerManager;
 
->>>>>>> Stashed changes
     [Header("Footstep Parameters")]
     [SerializeField] private float baseStepSpeed = 0.5f;
     [SerializeField] private float crouchStepMultiplayer = 1.5f;
@@ -114,10 +110,7 @@ public class CPMPlayer : MonoBehaviourPunCallbacks, IDamageable
     private float footstepTimer = 0;
 
 
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
 
     private void Awake()
     {
@@ -568,6 +561,7 @@ public class CPMPlayer : MonoBehaviourPunCallbacks, IDamageable
     void Die()
     {
         playerManager.Die();
+        GrenadeAbility.Instance.totalThrows = 2;
     }
 }
         

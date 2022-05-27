@@ -6,6 +6,8 @@ using System;
 
 public class GrenadeAbility : MonoBehaviour
 {
+    public static GrenadeAbility Instance;
+
 
     [Header("References")]
     public Transform cam;
@@ -27,6 +29,7 @@ public class GrenadeAbility : MonoBehaviour
 
     private void Start()
     {
+        Instance = this;
         if (player == null)
         {
             player = GameObject.FindWithTag("Player").GetComponent<CPMPlayer>();
