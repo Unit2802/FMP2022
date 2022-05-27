@@ -105,5 +105,4 @@ Assets/textures/NewMap textures/Outside/buildings_T_Outside_red_MetallicSmoothne
 Assets/textures/NewMap textures/Outside/buildings_T_Outside_red_Normal.png
 Assets/textures/NewMap textures/Outside/buildings_T_Outside_red_Normal.png.meta
 Assets/Scenes/Game/OcclusionCullingData.asset.meta
-*.meta
 Assets/Scenes/Game/OcclusionCullingData.asset
